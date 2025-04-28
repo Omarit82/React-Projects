@@ -6,3 +6,6 @@ header, footer{
 .navbar {
     background-color: #d1d1d1;
 }
+img {
+    height: 50px;
+}
