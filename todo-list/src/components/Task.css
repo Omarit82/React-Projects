@@ -1,0 +1,18 @@
+.task {
+    background-color: #00BDBD;
+    color:white;
+    border-radius: 10px;
+    border: #006f6f 2px solid;
+    margin: 5vw;
+}
+
+.title {
+    font-size: 16px;
+    margin: 0.5em;
+}
+
+@media (min-width: 500px){
+    .title{
+        font-size: 24px;
+    }
+}

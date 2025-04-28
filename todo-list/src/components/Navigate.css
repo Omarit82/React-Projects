@@ -1,0 +1,8 @@
+/*[data-bs-theme="custom"] {
+    .bg-body-tertiary {
+        background-color: red;
+    }
+    .navbar-nav {
+        --bs-nav-link-hover-color: #006f6f;
+    }
+}*/

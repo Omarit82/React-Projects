@@ -1,7 +1,13 @@
+import './Header.css';
+import { Navigate } from './Navigate';
+
 export const Header = () => {
     return (
-        <header>
-          <h1 className='text-center'>To do List</h1>
-        </header>
+        <>
+            <header className='d-flex align-items-center justify-content-center' >
+                <h1>To Do</h1>
+            </header>
+            <Navigate />
+        </>
     )
 }
