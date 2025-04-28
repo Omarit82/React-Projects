@@ -10,9 +10,16 @@
     font-size: 16px;
     margin: 0.5em;
 }
+.titleDate{
+    font-size: 16px;
+    margin: 0.5em;
+}
 
 @media (min-width: 500px){
     .title{
         font-size: 24px;
+    }
+    .titleDate{
+        font-size: 20px;
     }
 }

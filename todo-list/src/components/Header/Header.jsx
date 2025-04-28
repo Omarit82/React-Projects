@@ -1,5 +1,5 @@
 import './Header.css';
-import { Navigate } from './Navigate';
+import { Navigate } from '../Navbar/Navigate';
 
 export const Header = () => {
     return (
@@ -7,7 +7,7 @@ export const Header = () => {
             <header className='d-flex align-items-center justify-content-center' >
                 <h1>To Do</h1>
             </header>
-            <Navigate />
+            <Navigate user={"Omarit"} />
         </>
     )
 }

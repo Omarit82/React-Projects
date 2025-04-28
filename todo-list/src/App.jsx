@@ -1,8 +1,6 @@
-import { Header } from './components/header';
-import { Footer } from './components/Footer';
-import { Body } from './components/Body';
-import './App.css'
-
+import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
+import { Body } from './components/Body/Body';
 
 function App() {
 
