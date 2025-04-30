@@ -1,9 +1,33 @@
-import './Body.css';
+import { useEffect, useState } from 'react';
 import { Task } from './Task/Task';
+import './Body.css';
+
+
 export const Body = ()=>{
+    const [tasks,setTasks] = useState([]);
+
+    useEffect(()=>{
+        getTasks();
+    },[])
+
+    const getTasks = async() =>{ 
+        try {
+            const response = await fetch('http://localhost:8080/api/tasks');
+            const data = await response.json()
+            setTasks(data.tasks)
+        } catch (error) {
+            console.log("Could not get tasks");
+        }
+    }
+
+
     return (
         <div className="principal">
-            <Task title={"Tarea 1"} description={"description 1"} date={"28-4-2025"}/>
+            {
+                tasks.map(tk =>{
+                    return <Task key={tk._id} title={tk.title} description={tk.description} date={tk.date_gen} todo={tk.date_todo} />
+                })
+            }
         </div>
     )
 }
