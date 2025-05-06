@@ -17,7 +17,7 @@ export const Navigate= ({ user }) =>{
                             <a className="nav-link" href="#">Done</a>
                         </li>
                         <li className="nav-item d-flex justify-content-end">
-                            <a className="nav-link" href="#">Add new</a>
+                            <a className="nav-link" href="/newTask">Add new</a>
                         </li>
                     </ul>
                 </div>

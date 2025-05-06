@@ -15,6 +15,10 @@
     margin: 0.5em;
 }
 
+hr{
+    border: 2px solid blue;
+    width: 70%;
+}
 @media (min-width: 500px){
     .title{
         font-size: 24px;

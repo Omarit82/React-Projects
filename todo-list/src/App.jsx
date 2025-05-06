@@ -1,6 +1,9 @@
+import { Route, Routes } from 'react-router-dom';
+import { Navigate } from './components/Navbar/Navigate';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Body } from './components/Body/Body';
+import { NewTask } from './components/NewTask/NewTask'
 
 
 function App() {
@@ -8,7 +11,11 @@ function App() {
   return (
     <>
       <Header />
-      <Body />
+      <Navigate user={"Omarit"} />
+      <Routes >
+        <Route path='/' element={ <Body />} />
+        <Route path='/newTask'element={ <NewTask />} />
+      </Routes>
       <Footer />
     </>
   )

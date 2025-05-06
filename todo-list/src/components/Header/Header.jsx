@@ -1,5 +1,5 @@
 import './Header.css';
-import { Navigate } from '../Navbar/Navigate';
+
 import logo from '../../assets/img/todo.png'
 export const Header = () => {
     return (
@@ -8,7 +8,6 @@ export const Header = () => {
                 <img src={logo} alt="App logo" className='me-2' />
                 <h1>To Do</h1>
             </header>
-            <Navigate user={"Omarit"} />
         </>
     )
 }
