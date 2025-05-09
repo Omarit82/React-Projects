@@ -3,6 +3,9 @@
 *{
   font-family: montserrat;
   margin: 0;
-  border: 0;
   box-sizing: border-box;
+}
+.formulario {
+  border: 1px solid #00BDBD;
+  border-radius: 0.5rem;
 }

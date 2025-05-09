@@ -14,7 +14,7 @@ export const Task = ({title, description, date, todo}) => {
                 </div>
                 <hr className='m-auto' />
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-6 formulario">
                         <h3 className='text-center'>Created:</h3>
                         <h4 className='titleDate col'>Date: {date.slice(0, 10)}</h4>
                         <h4 className='titleDate col'>Hour: {date.slice(11, 19)}</h4>
