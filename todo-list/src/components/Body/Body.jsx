@@ -10,6 +10,10 @@ export const Body = ()=>{
         getTasks();
     },[])
 
+    const handleDelete = (id) => {
+        setTasks(tasks.filter(task=>task._id !== id));
+    }
+
     const getTasks = async() =>{ 
         try {
             const response = await fetch('http://localhost:8080/api/tasks');
@@ -25,7 +29,7 @@ export const Body = ()=>{
         <div className="principal">
             {
                 tasks.map(tk =>{
-                    return <Task key={tk._id} title={tk.title} description={tk.description} date={tk.date_gen} todo={tk.date_todo} />
+                   return <Task key={tk._id} onDelete={handleDelete} id={tk._id} title={tk.title} description={tk.description} date={tk.date_gen} todo={tk.date_todo} />
                 })
             }
         </div>

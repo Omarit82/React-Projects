@@ -1,29 +1,15 @@
-.task {
-    background-color: #00BDBD;
-    color:white;
-    border-radius: 10px;
-    border: #006f6f 2px solid;
-    margin: 5vw;
+.round{
+    border-radius: 50%;
 }
 
-.title {
-    font-size: 16px;
-    margin: 0.5em;
-}
-.titleDate{
-    font-size: 16px;
-    margin: 0.5em;
-}
-
-hr{
-    border: 2px solid blue;
-    width: 70%;
-}
 @media (min-width: 500px){
     .title{
         font-size: 24px;
     }
     .titleDate{
         font-size: 20px;
+    }
+    .round{
+        border-radius: 5px;
     }
 }

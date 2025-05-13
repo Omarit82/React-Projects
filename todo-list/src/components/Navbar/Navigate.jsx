@@ -11,7 +11,7 @@ export const Navigate= ({ user }) =>{
                 <div className="collapse navbar-collapse" id="toggler">
                     <ul className="navbar-nav ">
                         <li className="nav-item d-flex justify-content-end">
-                            <a className="nav-link active" aria-current="page" href="#">To-Do</a>
+                            <a className="nav-link active" aria-current="page" href="/">To-Do</a>
                         </li>
                         <li className="nav-item d-flex justify-content-end">
                             <a className="nav-link" href="#">Done</a>
