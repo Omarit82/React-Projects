@@ -8,7 +8,7 @@ export const Body = ()=>{
 
     useEffect(()=>{
         getTasks();
-    },[])
+    },[tasks])
 
     const handleDelete = (id) => {
         setTasks(tasks.filter(task=>task._id !== id));
@@ -18,7 +18,8 @@ export const Body = ()=>{
         try {
             const response = await fetch('http://localhost:8080/api/tasks');
             const data = await response.json()
-            setTasks(data.tasks)
+            const filterData = data.tasks.filter( task => task.done == false);
+            setTasks(filterData);
         } catch (error) {
             console.log("Could not get tasks");
         }

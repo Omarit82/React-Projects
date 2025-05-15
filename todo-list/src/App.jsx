@@ -3,7 +3,8 @@ import { Navigate } from './components/Navbar/Navigate';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Body } from './components/Body/Body';
-import { NewTask } from './components/NewTask/NewTask'
+import { NewTask } from './components/NewTask/NewTask';
+import { Done } from './components/Done/Done';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes >
         <Route path='/' element={ <Body />} />
         <Route path='/newTask'element={ <NewTask />} />
+        <Route path='/done' element={<Done />} />
       </Routes>
       <Footer />
     </>

@@ -12,7 +12,7 @@ export const NewTask = () =>{
             description: data.description,
             date_todo: data.date
         }
-        console.log(newData);
+       
         try {
             const response = await fetch('http://localhost:8080/api/tasks/',{
                 method: 'POST',
