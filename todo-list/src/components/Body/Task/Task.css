@@ -1,6 +1,12 @@
 .round{
     border-radius: 50%;
 }
+.task {
+    border: lightblue solid 2px;
+    border-radius: 10px;
+    padding:2px;
+    margin: 2%;
+}
 
 @media (min-width: 500px){
     .title{

@@ -24,7 +24,7 @@ export const Task = ({title, description, date, todo, id, onDelete}) => {
        
     }
     return (
-        <div className=''>
+        <div className='task'>
             <div className='container'>
                 <div className="row main">
                     <h2 className='title col-7'>{title}</h2>
@@ -40,14 +40,14 @@ export const Task = ({title, description, date, todo, id, onDelete}) => {
                         <p className='text-center m-2'>{description}</p>
                     </div>  
                     <div className="col-6 ">
-                        <h3 className='text-center'>Created:</h3>
-                        <h4 className=' col'>Date: {date.slice(0, 10)}</h4>
-                        <h4 className=' col'>Hour: {date.slice(11, 19)}</h4>
+                        <h5 className='text-center'>Created:</h5>
+                        <p className='text-center'>Date: {date.slice(0, 10)}</p>
+                        <p className='text-center'>Hour: {date.slice(11, 19)}</p>
                     </div>
                     <div className="col-6">
-                        <h3 className="text-center">To do on:</h3>
-                        <h4 className=''>Date: {todo.slice(0, 10)}</h4>
-                        <h4 className=''>Hour: {todo.slice(11, 19)}</h4>
+                        <h5 className="text-center">To do on:</h5>
+                        <p className='text-center'>Date: {todo.slice(0, 10)}</p>
+                        <p className='text-center'>Hour: {todo.slice(11, 19)}</p>
                     </div>
                 </div>}                            
             </div>
