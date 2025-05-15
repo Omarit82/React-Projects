@@ -7,7 +7,7 @@ export const Header = ({ user }) => {
         <header className='row align-items-center m-0' >
             <div className='col-7'>
                 <div className='d-flex  justify-content-end'>
-                    <img src={logo} alt="App logo" className='' />
+                    <img src={logo} alt="App logo" className='me-2' />
                     <Link to="/"><h1>To Do</h1></Link>
                 </div>
             </div>
