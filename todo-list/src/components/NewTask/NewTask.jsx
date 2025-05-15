@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router";
 
 export const NewTask = () =>{
     const { register,handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async(data) =>{
         const newData = {
@@ -22,6 +24,7 @@ export const NewTask = () =>{
             if(response.status == 201){
                 const result = await response.json();
             }
+            navigate('/')
         } catch (error) {
             console.error(error);
         }

@@ -10,8 +10,8 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Navigate user={"Omarit"} />
+      <Header user={"Omarit"} />
+      <Navigate/>
       <Routes >
         <Route path='/' element={ <Body />} />
         <Route path='/newTask'element={ <NewTask />} />

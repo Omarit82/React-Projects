@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './Task.css';
+import add from '../../../assets/img/add.png';
+import ok from '../../../assets/img/ok.png';
+import not from '../../../assets/img/not.png';
 
 export const Task = ({title, description, date, todo, id, onDelete}) => {
     
@@ -27,10 +30,13 @@ export const Task = ({title, description, date, todo, id, onDelete}) => {
         <div className=''>
             <div className='container'>
                 <div className="row main">
-                    <h2 className='title col-7'>{title}</h2>
-                    <button className='btn btn-success col-1 m-1 round' onClick={()=>setShow(!show)}>{show ? '-':'+'}</button>
-                    <button className='btn btn-primary col-1 m-1 round'>Done</button>
-                    <button className='btn btn-danger col-1 m-1 round' onClick={handleErase}>Erase</button>
+                    <h2 className='title col-9'>{title}</h2>
+                    <div>
+                        <img src={add} className='boton' onClick={()=>setShow(!show)} />
+                        <img src={ok} alt="ok logo" className='boton' />
+                        <img src={not} alt="ok logo" className='boton' onClick={handleErase} />
+                    </div>
+                    
                 </div>
                 
                 {show && 
