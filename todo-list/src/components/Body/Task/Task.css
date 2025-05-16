@@ -2,7 +2,7 @@
     border-radius: 50%;
 }
 .task {
-    border: lightblue solid 2px;
+    border: rgb(104, 178, 202) solid 2px;
     border-radius: 10px;
     padding:2px;
     margin: 2%;
