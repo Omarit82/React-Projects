@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router';
 import './App.css'
 import { Header } from './components/header/header';
-import { Navbar } from './components/Navbar/Navbar';
+import { Navegation } from './components/Navegation/Navegation';
 import { About } from './components/pages/About';
 import { Coiugazioni } from './components/pages/Coniugazioni';
 import { Home } from './components/pages/Home';
@@ -14,7 +14,7 @@ function App() {
     <>
       <div>
         <Header />
-        <Navbar />
+        <Navegation />
         <Routes >   
             <Route path='/' element={ <Home />} />
             <Route path='/coniugazioni'element={ <Coiugazioni />} />

@@ -1,5 +1,4 @@
 import colosseo from '../../assets/Colosseo.png';
-import { Navbar } from '../Navbar/Navbar';
 import './header.css';
 
 export const Header = () => {
@@ -11,7 +10,6 @@ export const Header = () => {
                 </div>
                 <h1 className='ms-5'>Aggeggi d'Italiano</h1>
             </header>
-            <Navbar />
         </>
     )
 }
