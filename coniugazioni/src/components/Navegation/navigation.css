@@ -1,0 +1,17 @@
+.btn {
+    width: fit-content;
+    margin: 5px;
+}
+.navegador{
+    background-color: #586e88;
+}
+.navbar-toggler {
+    margin: 10px 0 10px 0;
+    border: none;
+}
+
+.btn-info{
+    background-color: #2c507c;
+    border:none;
+    color:white;
+}

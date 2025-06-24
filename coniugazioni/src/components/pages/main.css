@@ -1,0 +1,20 @@
+main{
+    background-color: rgb(74, 114, 114);
+    color:white;
+    height: 75vh;
+}
+hr {
+    background-color: white;
+    opacity: none;
+    margin:0;
+    padding:0;
+}
+.session {
+    height: 40px;
+}
+
+.scelto{
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 40px;
+}

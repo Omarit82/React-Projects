@@ -1,21 +1,28 @@
 header {
-    background-color: #2B3033;
+    background-color: #394b57;
     color:white;
-    height: 30vh;
+    height: 20vh;
     .logo {
         height: 5em;
         margin: 10px;
         will-change: filter;
         transition: filter 300ms;
-        filter: drop-shadow(0 0 2em #fcc206aa);
+        filter: drop-shadow(0 0 2em #6e6cebaa);
     }
     .logo:hover {
        filter: drop-shadow(0 0 2em white);
     }
 }
+h1{
+    font-size: 25px;
+}
 
 @media (min-width: 600px) {
+    h1{
+        font-size: 50px;
+    }
     header{
+        height: 30vh;
         .logo {
             height: 8em;
             margin: 20px;
