@@ -1,4 +1,5 @@
 .principal {
     height: 70vh;
     overflow-y: scroll;
+    background-color: lightgrey;
 }
