@@ -1,0 +1,33 @@
+header {
+    background-color: #2B3033;
+    color:white;
+    height: 30vh;
+    .logo {
+        height: 5em;
+        margin: 10px;
+        will-change: filter;
+        transition: filter 300ms;
+        filter: drop-shadow(0 0 2em #fcc206aa);
+    }
+    .logo:hover {
+       filter: drop-shadow(0 0 2em white);
+    }
+}
+
+@media (min-width: 600px) {
+    header{
+        .logo {
+            height: 8em;
+            margin: 20px;
+        }
+    }
+}
+
+@media (min-width: 1024px){
+    header{
+        .logo {
+            height: 10em;
+            margin: 25px;
+        }
+    }
+}
