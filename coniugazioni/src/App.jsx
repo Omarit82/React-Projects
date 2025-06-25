@@ -6,6 +6,7 @@ import { About } from './components/pages/About';
 import { Coiugazioni } from './components/pages/Coniugazioni';
 import { Home } from './components/pages/Home';
 import { Quiz } from './components/pages/Quiz';
+import { Login } from './components/pages/login';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/coniugazioni'element={ <Coiugazioni />} />
             <Route path='/quiz' element={<Quiz />} />
             <Route path='/about' element={<About />} />
+            <Route path='/login' element={<Login />} />
         </Routes>
       </div>
     </>
