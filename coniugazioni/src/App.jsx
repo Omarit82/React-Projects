@@ -7,6 +7,7 @@ import { Coiugazioni } from './components/pages/Coniugazioni';
 import { Home } from './components/pages/Home';
 import { Quiz } from './components/pages/Quiz';
 import { Login } from './components/pages/login';
+import { Editor } from './components/pages/Editor';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path='/quiz' element={<Quiz />} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/editor' element={<Editor />} />
         </Routes>
       </div>
     </>

@@ -14,6 +14,7 @@ export const Login = () => {
             body: JSON.stringify(data)
         })
         const response = await infoSend.json();
+        /**sweet alert 2  - login ok o login failed */
         console.log(response)
     })
     return (
