@@ -18,3 +18,18 @@ hr {
     background-color: lightblue;
     height: 40px;
 }
+.login{
+    width: 75%
+}
+
+@media (min-width:350px){
+    .login{
+        width:60%;
+    }
+}
+
+@media (min-width:700px){
+    .login{
+        width: 40%;
+    }
+} 
