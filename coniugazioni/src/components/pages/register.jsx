@@ -1,20 +1,67 @@
 import { useForm } from "react-hook-form";
+import { Slide, ToastContainer,toast } from "react-toastify";
 import './main.css';
+import avatar from '../../assets/Avatar.png';
 
 export const Register = () => {
     const {reset, handleSubmit, register} = useForm();
     
     const registro = async(data) => {
         console.log(data);
-        const sendData = await fetch('http://localhost:3000/api/users/register',{
+        if(data.user_pass === data.confirm_pass){
+            if(!data.file){
+                data.file = avatar;
+            }
+            const sendData = await fetch('http://localhost:3000/api/users/register',{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        });
-        const response = await sendData.json();
-        reset();
+            });
+            if(sendData.status == 201){
+                reset();
+                toast.success("Utente Registrato!",{
+                    position:"top-center",
+                    autoClose: 2500,
+                    hideProgressBar:false,
+                    pauseOnHover:true,
+                    transition:Slide,
+                    theme:"dark"
+                })
+            }else if(sendData.status == 409){
+                reset();
+                toast.info("Utente ormai Registrato!",{
+                    position:"top-center",
+                    autoClose: 2500,
+                    hideProgressBar:false,
+                    pauseOnHover:true,
+                    transition:Slide,
+                    theme:"dark"
+                })
+            } else {
+                reset();
+                toast.info("Errore nella registrazione",{
+                    position:"top-center",
+                    autoClose: 2500,
+                    hideProgressBar:false,
+                    pauseOnHover:true,
+                    transition:Slide,
+                    theme:"dark"
+                })
+            }
+        }else{
+           /***El password ingresado no es igual a la confirmacion del pass */
+            toast.info("Parola d'ordine e confirmazione diverse",{
+                    position:"top-center",
+                    autoClose: 2500,
+                    hideProgressBar:false,
+                    pauseOnHover:true,
+                    transition:Slide,
+                    theme:"dark"
+            })
+        }
+        
     }
 
     return (
@@ -34,6 +81,8 @@ export const Register = () => {
                 <input {...register("file")}type="file" name="avatar" className="text-center"/>
                 <button type="submit" className="btn btn-danger mt-2 m-auto">Registrarse</button>
             </form>
+            <ToastContainer />
         </main>
+        
     )
 }
