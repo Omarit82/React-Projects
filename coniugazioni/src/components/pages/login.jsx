@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import './main.css';
 
 export const Login = () => {
 

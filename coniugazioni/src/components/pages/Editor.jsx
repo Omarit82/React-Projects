@@ -23,8 +23,8 @@ export const Editor = () => {
             <div>
                 <h3 className="text-center">Aggiungere Verbo</h3>
                 <form action="" onSubmit={handleSubmit(envio)} className='d-flex flex-column login m-auto'>
-                    <input {...register('Verbo_it',{required:true})} type="text" placeholder="Verbo italiano"className='m-2' />
-                    <input {...register('Verbo_trd',{required:true})} type="text" placeholder="Verbo traduzione" className='m-2' />
+                    <input {...register('verbo_it',{required:true})} type="text" placeholder="Verbo italiano"className='m-2' />
+                    <input {...register('verbo_trd',{required:true})} type="text" placeholder="Verbo traduzione" className='m-2' />
                     <button type="submit" className='btn btn-danger m-auto'>Submit</button>
                 </form>
             </div>
