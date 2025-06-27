@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 
 export const Editor = () => {
     const { handleSubmit, register,reset } = useForm();
     
     const envio = async(data) =>{
+        data.verbo_it = data.verbo_it.toString().toLowerCase();
+        data.verbo_trd = data.verbo_trd.toString().toLowerCase();
         console.log(data);
+        
         const sendVerbi = await fetch('http://localhost:3000/api/editor',{
             method:"POST",
             headers: {
@@ -12,8 +16,27 @@ export const Editor = () => {
             },
             body: JSON.stringify(data)
         })
-        const response = await sendVerbi.json();
-        console.log(response);
+        console.log(sendVerbi);
+        const response = await sendVerbi.json();        
+        if(sendVerbi.status == 201){
+            toast.success("Verbo caricato!",{
+                position:"top-center",
+                autoClose: 2500,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+        }else{
+            toast.error("Il verbo già essiste!",{
+                position:"top-center",
+                autoClose: 2500,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+        }
         reset();
     }
     
@@ -27,6 +50,7 @@ export const Editor = () => {
                     <input {...register('verbo_trd',{required:true})} type="text" placeholder="Verbo traduzione" className='m-2' />
                     <button type="submit" className='btn btn-danger m-auto'>Submit</button>
                 </form>
+                <ToastContainer />
             </div>
 
         </main>
