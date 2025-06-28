@@ -1,7 +1,6 @@
 main{
     background-color: rgb(74, 114, 114);
     color:white;
-    height: 75vh;
 }
 hr {
     background-color: white;
@@ -19,16 +18,38 @@ hr {
     height: 40px;
 }
 .login{
-    width: 75%
+    padding: 15px;
+    width: 75%;
+    border: solid 2px lightblue;
+    border-radius: 15px;
+}
+input{
+    height: 50px;
+    border-radius: 15px;
+    padding-left: 25px;
+}
+.sessione{
+    margin:20px;
+    border: 2px solid lightblue;
+    border-radius: 15px;
+}
+.tabla{
+     display: flex;
+     flex-direction: column;
+     width: 75%;
+     margin:auto;
 }
 
-@media (min-width:350px){
+@media (min-width:600px){
     .login{
         width:60%;
     }
+    .tabla{
+        flex-direction: row;
+    }
 }
 
-@media (min-width:700px){
+@media (min-width:1020px){
     .login{
         width: 40%;
     }

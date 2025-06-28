@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { Slide, ToastContainer,toast } from "react-toastify";
+import { useNavigate } from "react-router";
 import './main.css';
 import avatar from '../../assets/Avatar.png';
 
 export const Register = () => {
     const {reset, handleSubmit, register} = useForm();
+    const navigate = useNavigate();
     
     const registro = async(data) => {
-        console.log(data);
         if(data.user_pass === data.confirm_pass){
             if(!data.file){
                 data.file = avatar;
@@ -29,6 +30,9 @@ export const Register = () => {
                     transition:Slide,
                     theme:"dark"
                 })
+                setTimeout(()=>{
+                    navigate('/login');
+                },2500)
             }else if(sendData.status == 409){
                 reset();
                 toast.info("Utente ormai Registrato!",{
@@ -66,6 +70,7 @@ export const Register = () => {
 
     return (
         <main>
+            <h2 className="text-center mb-5 pt-5">Registrazione:</h2>
             <form action="" onSubmit={handleSubmit(registro)} encType="multipart/form-data" className="d-flex flex-column login m-auto">
                 <label htmlFor="user_name" className="text-center m-2">Nome utente</label>
                 <input {...register("user_name",{required:true})} type="text" name="user_name" placeholder="Nome utente"/>

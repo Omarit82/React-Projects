@@ -3,6 +3,7 @@ import { Slide, ToastContainer, toast } from 'react-toastify';
 
 export const Editor = () => {
     const { handleSubmit, register,reset } = useForm();
+   
     
     const envio = async(data) =>{
         data.verbo_it = data.verbo_it.toString().toLowerCase();
@@ -48,6 +49,9 @@ export const Editor = () => {
                 <form action="" onSubmit={handleSubmit(envio)} className='d-flex flex-column login m-auto'>
                     <input {...register('verbo_it',{required:true})} type="text" placeholder="Verbo italiano"className='m-2' />
                     <input {...register('verbo_trd',{required:true})} type="text" placeholder="Verbo traduzione" className='m-2' />
+                    <h4 className='text-center'>Indicativo Presente:</h4>
+                    
+                    <input {...register('',{required:true})} type="text" className='m-2' />
                     <button type="submit" className='btn btn-danger m-auto'>Submit</button>
                 </form>
                 <ToastContainer />
