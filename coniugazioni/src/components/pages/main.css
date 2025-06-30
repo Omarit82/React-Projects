@@ -33,13 +33,25 @@ input{
     border: 2px solid lightblue;
     border-radius: 15px;
 }
-.tabla{
-     display: flex;
-     flex-direction: column;
-     width: 75%;
-     margin:auto;
+.containerTable{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin:auto;
 }
-
+.tabla {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.table{
+    --bs-table-accent-bg: lightblue;
+    --bs-table-striped-bg: darkgray;
+    --bs-table-hover-bg: rgb(97, 96, 96);
+    width: 30%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 @media (min-width:600px){
     .login{
         width:60%;

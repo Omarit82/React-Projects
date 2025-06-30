@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './main.css'
-import { Tabella } from './Tabella';
 
 export const Coniugazioni = () => {
     const [verbo, setVerbo] = useState('Verbo');
@@ -44,41 +43,6 @@ export const Coniugazioni = () => {
                 <h2 className='text-center'>Verbo Scelto</h2>
                 <div>
                     <input type="text" name="" id="" className='me-2 scelto' placeholder={verbo} disabled/>
-                </div>
-            </div>
-            <div>
-                <h3 className='text-center'>Indicativo</h3>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Presente"} respuesta={con.length && con[0]} />
-                    <Tabella tempo={"Imperfetto"} respuesta={con.length && con[1]} />
-                    <Tabella tempo={"Passato Remoto"} respuesta={con.length && con[2]}  />
-                </div>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Futuro Semplice"} respuesta={con.length && con[3]} />
-                    <Tabella tempo={"Passato prossimo"}  respuesta={con.length && con[4]} />
-                    <Tabella tempo={"Trapassato prossimo"}  respuesta={con.length && con[5]} />
-                </div>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Trapassato remoto"} respuesta={con.length && con[6]} />
-                    <Tabella tempo={"Futuro anteriore"} respuesta={con.length && con[7]} />
-                </div>
-            </div>
-            <div>
-                <h3 className='text-center'>Congiuntivo</h3>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Presente"}/>
-                    <Tabella tempo={"Imperfetto"}/>
-                    <Tabella tempo={"Passato"}/>
-                </div>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Trapassato"}/>
-                </div>
-            </div>
-            <div>
-                <h3 className='text-center'>Condizionale</h3>
-                <div className='tabla p-2'>
-                    <Tabella tempo={"Presente"}  respuesta={con.length && con[8]} />
-                    <Tabella tempo={"Passato"}  respuesta={con.length && con[9]} />
                 </div>
             </div>
         </main>
