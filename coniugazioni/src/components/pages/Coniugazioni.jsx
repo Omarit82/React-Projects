@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './main.css'
+import { Slide, toast, ToastContainer } from 'react-toastify';
+import { Planilla } from './Planilla';
 
 export const Coniugazioni = () => {
     const [verbo, setVerbo] = useState('Verbo');
@@ -27,9 +29,41 @@ export const Coniugazioni = () => {
             },
             body: JSON.stringify(data)
         });
-        const resp = await coniugazione.json();
-        console.log(resp.payload);
-        setCon(resp.payload);
+        console.log(coniugazione);
+        
+        if(coniugazione.status == 400){
+            toast.error("Non trovato!",{
+                position:"top-center",
+                autoClose: 2500,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+        }else if( coniugazione.status == 200){
+            const resp = await coniugazione.json();
+            console.log(resp.payload);
+            toast.success(resp.payload.verbo_it,{
+                position:"top-center",
+                autoClose: 2500,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+            
+            setCon(resp.payload);
+        }else{
+            toast.error("Errore",{
+                position:"top-center",
+                autoClose: 2500,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+        }
+        
     }
 
     return(
@@ -45,6 +79,17 @@ export const Coniugazioni = () => {
                     <input type="text" name="" id="" className='me-2 scelto' placeholder={verbo} disabled/>
                 </div>
             </div>
+            <h3 className='text-center'>Indicativo</h3>
+            <div className="containerTable">
+                <Planilla />
+                <Planilla />
+                <Planilla />
+                <Planilla />
+                <Planilla />
+                <Planilla />
+            </div>
+            
+            <ToastContainer />
         </main>
     )
 }

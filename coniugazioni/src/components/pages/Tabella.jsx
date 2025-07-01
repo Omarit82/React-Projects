@@ -1,12 +1,8 @@
 import { Table } from "react-bootstrap";
 
 
-export const Tabella = ({tempo, register}) => {
-    
-    const tiempos ={
-        tempo: []
-    }
-    console.log(tiempos);
+export const Tabella = ({grupo,tempo, register}) => {
+
     
     return (
         <Table striped bordered hover>
@@ -19,28 +15,28 @@ export const Tabella = ({tempo, register}) => {
             <tbody>
                 <tr>
                     <td>Io</td>
-                    <td><input type="text" name="Io"{...register(tiempos.tempo.push("io"),{required:true})} /></td>
+                    <td><input type="text" name="Io"{...register(`${grupo}[${tempo}][0]`,{required:true})} /></td>
                 </tr>
                 <tr>
                     <td>Tu</td>
-                    <td><input type="text" name="Tu"{...register(tiempos.tempo.push("tu"),{required:true})} /></td>
+                    <td><input type="text" name="Tu"{...register(`${grupo}[${tempo}][1]`,{required:true})} /></td>
                 </tr>
                 <tr>
                     <td>Lui/Lei</td>
-                    <td><input type="text" name="Lui/Lei"{...register(tiempos.tempo.push("lei"),{required:true})} /></td>
+                    <td><input type="text" name="Lui/Lei"{...register(`${grupo}[${tempo}][2]`,{required:true})} /></td>
                 </tr>
-                {/*<tr>
+                <tr>
                     <td>Noi</td>
-                    <td><input type="text" name="Noi"{...register(,{required:true})} /></td>
+                    <td><input type="text" name="Noi"{...register(`${grupo}[${tempo}][3]`,{required:true})} /></td>
                 </tr>
                 <tr>
                     <td>Voi</td>
-                    <td><input type="text" name="Voi"{...register(,{required:true})} /></td>
+                    <td><input type="text" name="Voi"{...register(`${grupo}[${tempo}][4]`,{required:true})} /></td>
                 </tr>
                 <tr>
                     <td>Loro</td>
-                    <td><input type="text" name="Loro"{...register(,{required:true})} /></td>
-                </tr> */}
+                    <td><input type="text" name="Loro"{...register(`${grupo}[${tempo}][5]`,{required:true})} /></td>
+                </tr>
             </tbody>
         </Table>
     )

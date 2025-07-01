@@ -33,7 +33,7 @@ export const Editor = () => {
                 theme:"dark"
             })
         }
-       // reset();
+        //reset();
     }
     
     return(
@@ -52,32 +52,33 @@ export const Editor = () => {
                             <input type="text" {...register("verbo_trd")} />
                         </div>                       
                     </div>
+                    <h4 className="w-100 text-center">Indicativo</h4>
                     <div className='containerTable'>
-                        <Tabella tempo={"presente"} register={register} />
-                        <Tabella tempo={"imperfetto"}  register={register} />
-                        <Tabella tempo={"Passato Remoto"} register={register} />
-                        {/* <Tabella tempo={"Futuro Semplice"}  register={register} />
-                        <Tabella tempo={"Passato Prossimo"}  register={register} />
-                        <Tabella tempo={"Trapassato Prossimo"}  register={register} />
-                        <Tabella tempo={"Trapassato Remoto"}  register={register} />
-                        <Tabella tempo={"Futuro Anteriore"}  register={register} /> */}
+                        <Tabella grupo={"indicativo"} tempo={"presente"} register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"imperfetto"}  register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Passato Remoto"} register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Futuro Semplice"}  register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Passato Prossimo"}  register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Trapassato Prossimo"}  register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Trapassato Remoto"}  register={register} />
+                        <Tabella grupo={"indicativo"} tempo={"Futuro Anteriore"}  register={register} />
                     </div>
-                    {/* <h4 className="w-100 text-center">Congiuntivo</h4>
+                    <h4 className="w-100 text-center">Congiuntivo</h4>
                     <div className='containerTable'>
-                        <Tabella tempo={"Presente"} register={register} />
-                        <Tabella tempo={"Passato"} register={register}  />
-                        <Tabella tempo={"imperfetto"} register={register} />
-                        <Tabella tempo={"Trapassato"} register={register} />
+                        <Tabella grupo={"congiuntivo"} tempo={"Presente"} register={register} />
+                        <Tabella grupo={"congiuntivo"} tempo={"Passato"} register={register}  />
+                        <Tabella grupo={"congiuntivo"} tempo={"imperfetto"} register={register} />
+                        <Tabella grupo={"congiuntivo"} tempo={"Trapassato"} register={register} />
                     </div>
                     <h4 className="w-100 text-center">Condizionale</h4>
                     <div className='containerTable'>
-                        <Tabella tempo={"Presente"} register={register} />
-                        <Tabella tempo={"Passato"} register={register} />
+                        <Tabella grupo={"condizionale"} tempo={"Presente"} register={register} />
+                        <Tabella grupo={"condizionale"} tempo={"Passato"} register={register} />
                     </div>
                     <h4 className="w-100 text-center">Imperativo</h4>
                     <div className='containerTable'>
-                        <Tabella tempo={"Presente"}  register={register} />
-                    </div> */}
+                        <Tabella grupo={"imperativo"} tempo={"Presente"}  register={register} />
+                    </div>
                     <button type="submit"className='btn btn-info m-auto'>Caricare</button>
                 </form>
                 <ToastContainer />
