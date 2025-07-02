@@ -1,19 +1,23 @@
 import { Table } from "react-bootstrap";
 
 
-export const Planilla = () => {
+export const Planilla = ({tiempo, payload}) => {
+    console.log(payload);
+    
+    
+   
     return (
          <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th></th>
+                    <th>{tiempo}</th>
                     <th>Risposta</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Io</td>
-                    <td><input type="text" name="Io"/></td>
+                    <td><input type="text" name="Io" placeholder={payload && payload[0]} /></td>
                 </tr>
                 <tr>
                     <td>Tu</td>

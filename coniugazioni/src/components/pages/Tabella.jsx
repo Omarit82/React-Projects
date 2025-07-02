@@ -1,14 +1,14 @@
 import { Table } from "react-bootstrap";
 
 
-export const Tabella = ({grupo,tempo, register}) => {
+export const Tabella = ({grupo,nome,tempo, register}) => {
 
     
     return (
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>{tempo}</th>
+                    <th>{nome}</th>
                     <th>Risposta</th>
                 </tr>
             </thead>

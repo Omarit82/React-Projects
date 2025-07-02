@@ -23,17 +23,26 @@ export const Editor = () => {
                 transition:Slide,
                 theme:"dark"
             })
-        }else{
-            toast.error("Error al caricare!",{
+        }else if(verbo.status==409){
+            toast.info("Verbo già caricato!",{
                 position:"top-center",
-                autoClose: 2500,
+                autoClose: 4000,
+                hideProgressBar:false,
+                pauseOnHover:true,
+                transition:Slide,
+                theme:"dark"
+            })
+        }else{
+            toast.error("Errore al caricare!",{
+                position:"top-center",
+                autoClose: 3000,
                 hideProgressBar:false,
                 pauseOnHover:true,
                 transition:Slide,
                 theme:"dark"
             })
         }
-        //reset();
+        reset();
     }
     
     return(
@@ -54,30 +63,30 @@ export const Editor = () => {
                     </div>
                     <h4 className="w-100 text-center">Indicativo</h4>
                     <div className='containerTable'>
-                        <Tabella grupo={"indicativo"} tempo={"presente"} register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"imperfetto"}  register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Passato Remoto"} register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Futuro Semplice"}  register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Passato Prossimo"}  register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Trapassato Prossimo"}  register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Trapassato Remoto"}  register={register} />
-                        <Tabella grupo={"indicativo"} tempo={"Futuro Anteriore"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Presente"} tempo={"presente"} register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Imperfetto"} tempo={"imperfetto"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Passato Remoto"} tempo={"passato_remoto"} register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Futuro Semplice"} tempo={"futuro_semplice"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Passato Prossimo"} tempo={"passato_prossimo"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Trapassato Prossimo"} tempo={"trapassato_prossimo"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Trapassato Remoto"} tempo={"trapassato_remoto"}  register={register} />
+                        <Tabella grupo={"indicativo"} nome={"Futuro Anteriore"} tempo={"futuro_anteriore"}  register={register} />
                     </div>
                     <h4 className="w-100 text-center">Congiuntivo</h4>
                     <div className='containerTable'>
-                        <Tabella grupo={"congiuntivo"} tempo={"Presente"} register={register} />
-                        <Tabella grupo={"congiuntivo"} tempo={"Passato"} register={register}  />
-                        <Tabella grupo={"congiuntivo"} tempo={"imperfetto"} register={register} />
-                        <Tabella grupo={"congiuntivo"} tempo={"Trapassato"} register={register} />
+                        <Tabella grupo={"congiuntivo"}nome={"Presente"}  tempo={"presente"} register={register} />
+                        <Tabella grupo={"congiuntivo"}nome={"Passato"}  tempo={"passato"} register={register}  />
+                        <Tabella grupo={"congiuntivo"}nome={"Imperfetto"} tempo={"imperfetto"} register={register} />
+                        <Tabella grupo={"congiuntivo"}nome={"Trapassato"} tempo={"trapassato"} register={register} />
                     </div>
                     <h4 className="w-100 text-center">Condizionale</h4>
                     <div className='containerTable'>
-                        <Tabella grupo={"condizionale"} tempo={"Presente"} register={register} />
-                        <Tabella grupo={"condizionale"} tempo={"Passato"} register={register} />
+                        <Tabella grupo={"condizionale"}nome={"Presente"} tempo={"presente"} register={register} />
+                        <Tabella grupo={"condizionale"}nome={"Passato"} tempo={"passato"} register={register} />
                     </div>
                     <h4 className="w-100 text-center">Imperativo</h4>
                     <div className='containerTable'>
-                        <Tabella grupo={"imperativo"} tempo={"Presente"}  register={register} />
+                        <Tabella grupo={"imperativo"}nome={"Presente"} tempo={"presente"}  register={register} />
                     </div>
                     <button type="submit"className='btn btn-info m-auto'>Caricare</button>
                 </form>
