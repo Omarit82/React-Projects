@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './main.css'
 import { Slide, toast, ToastContainer } from 'react-toastify';
 import { Planilla } from './Planilla';
@@ -7,6 +7,7 @@ export const Coniugazioni = () => {
    
     const [verbo, setVerbo] = useState('Verbo');
     const [con, setCon] = useState([]);
+   
 
     const handleClick = async() =>{
         const verbos = await fetch('http://localhost:3000/api/editor/',{
@@ -40,7 +41,7 @@ export const Coniugazioni = () => {
             })
         }else if( coniugazione.status == 200){
             const resp = await coniugazione.json();
-            console.log(resp.payload);
+            //console.log(resp.payload);
             toast.success(resp.payload.verbo_it,{
                 position:"top-center",
                 autoClose: 2500,
@@ -66,8 +67,13 @@ export const Coniugazioni = () => {
     return(
         <main>
             <hr />
-            <div className='p-2 sessione'>
-                <button className='btn btn-info'>Nuova Sessione</button>
+            <div className='p-2 sessione d-flex justify-content-center align-items-center'>
+                <label htmlFor="indicativo">Indicativo</label>
+                <input type="checkbox"name="indicativo" id="" className='m-2' />
+                <label htmlFor="congiuntivo">Congiuntivo</label>
+                <input type="checkbox"name="congiuntivo" id="" className='m-2'/>
+                <label htmlFor="condizionale">Condizionale</label>
+                <input type="checkbox"name="condizionale" id="" className='m-2'/>
             </div>
             <div className='d-flex align-items-center justify-content-between w-75 m-auto pt-5'>
                 <button onClick={handleClick} className="btn btn-info session">Nuovo Verbo</button>
@@ -86,7 +92,7 @@ export const Coniugazioni = () => {
                 <Planilla tiempo={"Trapassato Prossimo"}payload={Object.keys(con).length ? (con.indicativo[0]).trapassato_prossimo : ""} />
                 <Planilla tiempo={"Trapassato Remoto"}payload={Object.keys(con).length ? (con.indicativo[0]).trapassato_remoto : ""}  />
                 <Planilla tiempo={"Futuro Anteriore"}payload={Object.keys(con).length ? (con.indicativo[0]).futuro_anteriore : ""} />
-            </div>
+            </div>    
             <h3 className='text-center'>Congiuntivo</h3>
             <div className="containerTable">
                 <Planilla tiempo={"Presente"} payload={Object.keys(con).length ? (con.congiuntivo[0]).presente : ""}/>
