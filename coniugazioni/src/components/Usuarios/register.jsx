@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Slide, ToastContainer,toast } from "react-toastify";
 import { useNavigate } from "react-router";
-import './main.css';
+import './usuarios.css';
 import avatar from '../../assets/Avatar.png';
 
 export const Register = () => {

@@ -1,0 +1,38 @@
+.sessione{
+    margin:20px;
+    border: 2px solid lightblue;
+    border-radius: 15px;
+}
+.session {
+    height: 40px;
+}
+.verde{
+    background-color: rgb(1, 177, 1);
+    color:white;
+    border:none;
+}
+.rojo{
+    background-color: rgb(192, 4, 4);
+    color:white;
+    border:none;
+}
+.scelto{
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 40px;
+}
+.containerTable{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin:auto;
+}
+
+.table{
+    --bs-table-accent-bg: lightblue;
+    --bs-table-striped-bg: darkgray;
+    --bs-table-hover-bg: rgb(97, 96, 96);
+    width: 30%;
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -1,0 +1,11 @@
+.tabla {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+@media (min-width:600px){
+   
+    .tabla{
+        flex-direction: row;
+    }
+}

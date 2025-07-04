@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './main.css'
+import './coniugazioni.css';
 import { Slide, toast, ToastContainer } from 'react-toastify';
 import { Planilla } from './Planilla';
 
@@ -41,7 +41,6 @@ export const Coniugazioni = () => {
             })
         }else if( coniugazione.status == 200){
             const resp = await coniugazione.json();
-            //console.log(resp.payload);
             toast.success(resp.payload.verbo_it,{
                 position:"top-center",
                 autoClose: 2500,
@@ -107,7 +106,7 @@ export const Coniugazioni = () => {
             </div>
             <h3 className='text-center'>Imperativo</h3>
             <div className="containerTable">
-                <Planilla tiempo={"Imperativo Presente"}payload={Object.keys(con).length ? (con.imperativo[0]).presente : ""}/>
+                <Planilla tiempo={"Imperativo Presente"}payload={Object.keys(con).length ? (con.imperativo[0]).presente : ""} />
             </div> 
             <ToastContainer />
         </main>

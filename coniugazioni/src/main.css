@@ -6,3 +6,20 @@
   box-sizing: border-box;
   font-family: roboto;
 }
+
+main{
+    background-color: rgb(74, 114, 114);
+    color:white;
+}
+hr {
+    background-color: white;
+    opacity: none;
+    margin:0;
+    padding:0;
+}
+
+input{
+    height: 50px;
+    border-radius: 15px;
+    padding-left: 25px;
+}

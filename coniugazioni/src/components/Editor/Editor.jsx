@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import { Tabella } from './Tabella';
+import "./editor.css";
+
 
 export const Editor = () => {
     const {handleSubmit,register,reset} = useForm();

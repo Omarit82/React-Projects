@@ -2,12 +2,12 @@ import { Route, Routes } from 'react-router';
 import { Header } from './components/header/header';
 import { Navegation } from './components/Navegation/Navegation';
 import { About } from './components/pages/About';
-import { Coniugazioni } from './components/pages/Coniugazioni';
+import { Coniugazioni } from './components/Coniugazioni/Coniugazioni';
 import { Home } from './components/pages/Home';
 import { Quiz } from './components/pages/Quiz';
-import { Editor } from './components/pages/Editor';
-import { Register } from './components/pages/register';
-import { Login } from './components/pages/login';
+import { Editor } from './components/Editor/Editor';
+import { Register } from './components/Usuarios/register';
+import { Login } from './components/Usuarios/login';
 
 function App() {
 

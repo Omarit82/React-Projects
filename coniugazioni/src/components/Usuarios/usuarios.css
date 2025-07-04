@@ -1,0 +1,18 @@
+.login{
+    padding: 15px;
+    width: 75%;
+    border: solid 2px lightblue;
+    border-radius: 15px;
+}
+
+@media (min-width:600px){
+    .login{
+        width:60%;
+    }
+}
+
+@media (min-width:1020px){
+    .login{
+        width: 40%;
+    }
+} 
