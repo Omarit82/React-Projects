@@ -5,6 +5,7 @@ import { Navbar } from "./assets/Components/Navbar/Navbar"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Footer } from "./assets/Components/Footer/Footer"
 import { UserProvider } from "./assets/Contexts/UserContext/UserContext"
+import { Login } from "./assets/Pages/Login/Login"
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
         <Header />
         <Navbar />
         <Routes>
-          <Route path='/'  />
+          <Route path='/login' element={<Login />} />
           <Route />
           <Route />
         </Routes>
