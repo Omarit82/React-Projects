@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Footer } from "./assets/Components/Footer/Footer"
 import { UserProvider } from "./assets/Contexts/UserContext/UserContext"
 import { Login } from "./assets/Pages/Login/Login"
+import { Register } from "./assets/Pages/Register/Register"
+import { Home } from "./assets/Pages/Home/Home"
 
 function App() {
 
@@ -17,8 +19,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/login' element={<Login />} />
-          <Route />
-          <Route />
+          <Route path="/register" element={<Register />} />
+          <Route path='/home' element={<Home />} />
         </Routes>
         <Footer />
       </BrowserRouter>

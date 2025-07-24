@@ -6,5 +6,7 @@
 }
 
 main {
-    height: 75vh;
+    padding: 20px;
+    height: 65vh;
+    overflow-y: scroll;
 }

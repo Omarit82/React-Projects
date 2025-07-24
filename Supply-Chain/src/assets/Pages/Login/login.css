@@ -1,0 +1,17 @@
+input {
+    background-color: rgb(252, 252, 196);
+}
+
+.logoGoogle {
+    width: 50px;
+}
+.btn-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2C4770;
+    color: #fff;
+}
+.btn-info:hover{
+    background-color: #4C668C;
+}
