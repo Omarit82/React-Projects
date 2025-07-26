@@ -3,3 +3,10 @@ header{
     color: #FFF;
     height: 20vh;
 }
+.avatar {
+    border-radius: 50%;
+    height:5em;
+}
+.button-logout{
+    height: 25%;
+}

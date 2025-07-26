@@ -8,6 +8,7 @@ import { UserProvider } from "./assets/Contexts/UserContext/UserContext"
 import { Login } from "./assets/Pages/Login/Login"
 import { Register } from "./assets/Pages/Register/Register"
 import { Home } from "./assets/Pages/Home/Home"
+import {ProtectedRoute} from "./assets/Components/ProtectedRoute/ProtectedRoute.jsx"
 
 function App() {
 
@@ -19,8 +20,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/login' element={<Login />} />
+          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/register" element={<Register />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </BrowserRouter>

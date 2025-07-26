@@ -1,17 +1,19 @@
 import { Nav, NavDropdown } from "react-bootstrap"
+import { Link } from "react-router-dom";
+import './navBar.css'
 
 export const Navbar = () => {
     return(
         <>
             <Nav>
-                <Nav.Link href="/home">Home</Nav.Link>
-                <Nav.Link href="/about">About</Nav.Link>
+                <Link to="/home" className="navBarItem m-2">Home</Link>
+                <Link to="/about" className="navBarItem m-2">About</Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item><Link to='/home/3.1' className="navBarItem">Action</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to='/home/3.2' className="navBarItem">Another action</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to='/home/3.3' className="navBarItem">Something</Link></NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                <NavDropdown.Item><Link to='/home/3.4' className="navBarItem">Separated link</Link></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
             <hr className="w-75 m-auto"/>

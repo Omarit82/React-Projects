@@ -2,16 +2,38 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import google from '../../Images/google.png';
 import './login.css'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
 
 export const Login = () => {
     const {register,handleSubmit,formState:{ errors }} = useForm();
     const navigate = useNavigate();
-    const  { infoLogin } = useContext(UserContext);
+    const  { setLogin } = useContext(UserContext);
+
+    useEffect(()=>{
+        /**Chequeo la existencia de un usuario logueado.*/
+        const getUser = async() =>{
+            try {
+                const user = await fetch('http://localhost:3000/api/user',{
+                    method:'GET',
+                    credentials:'include'
+                });
+                if(user.status == 200){
+                    const respuesta = await user.json();
+                    setLogin(respuesta.User);
+                    navigate('/');
+                }else{
+                    console.log("Usuario no autenticado aun");
+                }
+            } catch (error) {
+                console.log("Usuario no autenticado aun");
+            }
+            
+        }
+        getUser();
+    },[])
 
     const onSubmit = async(data) => {
-        console.log(data);
         const info = {
             "email":data.email,
             "password":data.password
@@ -25,20 +47,12 @@ export const Login = () => {
             body: JSON.stringify(info)
         });
         const res = await login.json();
-        infoLogin(res.Session);
+        setLogin(res.Session);
         navigate('/home');
     }
 
     const logWithGoogle = async() => {
-        console.log("Log with google");
-        const log = await fetch('http://localhost:3000/auth/google',{
-            method:"get",
-            credentials: 'include',
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log(log);
+        window.location.href = 'http://localhost:3000/auth/google';
     }
 
 
@@ -47,10 +61,10 @@ export const Login = () => {
             <div className="container">
                 <h2 className="text-center">Login:</h2>
                 <form action="" method="POST" onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column w-50 m-auto">
-                    <label htmlFor="email" className="text-center mb-1">USUARIO:</label>
+                    <label className="text-center mb-1">USUARIO:</label>
                     <input {...register("email",{required:true})} type="email" className="text-center campo mb-1 w-50 m-auto" name="email" placeholder="...user" />
                     {errors.user && <span className="text-center mb-1 ">Campo Requerido</span>}
-                    <label htmlFor="password" className="text-center mb-1 ">PASSWORD:</label>
+                    <label className="text-center mb-1 ">PASSWORD:</label>
                     <input {...register("password",{required:true})} type="password" className="text-center campo mb-1 w-50 m-auto" name="password" placeholder="...password" />
                     {errors.password && <span className="text-center mb-1">Campo Requerido</span>}
                     <button className="btn btn-info w-25 m-auto mb-1 w-50" type="submit">Login</button>
