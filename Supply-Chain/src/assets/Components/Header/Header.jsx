@@ -23,7 +23,7 @@ export const Header = () => {
                             <img src={usuario.avatar} alt="Avatar" className='avatar m-2' />
                             <p>{usuario.apellido}, {usuario.nombre}</p>
                         </div>
-                        <button className="btn btn-info button-logout" onClick={logout}>Logout</button>
+                        <button className="btn btn-info button-logout ms-2" onClick={logout}>Logout</button>
                     </div>}
             </div>
         </header>
