@@ -9,6 +9,8 @@ import { Login } from "./assets/Pages/Login/Login"
 import { Register } from "./assets/Pages/Register/Register"
 import { Home } from "./assets/Pages/Home/Home"
 import {ProtectedRoute} from "./assets/Components/ProtectedRoute/ProtectedRoute.jsx"
+import { Reparaciones } from "./assets/Pages/Home/Reparaciones.jsx"
+import { TareasCompletas } from "./assets/Pages/Home/TareasCompletas.jsx"
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/register" element={<Register />} />
           <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path='/reparaciones' element={<ProtectedRoute><Reparaciones /></ProtectedRoute>} />
+          <Route path='/tareas_completas' element={<ProtectedRoute><TareasCompletas /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </BrowserRouter>

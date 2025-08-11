@@ -1,19 +1,22 @@
 import { Button, Card } from "react-bootstrap";
 import './deal.css';
 import { useEffect, useState } from "react";
+import down from '../../Images/down.png';
+import upArrow from '../../Images/up.png';
 import { useForm } from "react-hook-form";
-
 
 export const Deal = ({deal}) => {
     const [dealInfo,setDealInfo] = useState(false);
     const [dealTask,setDealTask] = useState(false);
     const [hover,setHover] = useState(false);
+    const [ready,setReady] = useState(false);
     const [dia,setDia] = useState();
     const [mes,setMes] = useState();
     const [anio,setAnio] = useState();
     const [fix,setFix] = useState(false);
     const [task, setTask] = useState([]);
     const [lineItems,setLineItems] = useState([]);
+    const [up,setUp] = useState(true);
     const {register,handleSubmit} = useForm();
 
     useEffect(() => {
@@ -25,13 +28,11 @@ export const Deal = ({deal}) => {
                 });
                 if(tarea.status == 200){ 
                     const resultado = await tarea.json();
-                    setTask(resultado.Task);                    
-                }
-                   
+                    setTask(resultado.Task);                                        
+                }    
             } catch (error) {
                 console.log(error);
             }
-            
         };
         getTarea();
     },[])
@@ -58,7 +59,8 @@ export const Deal = ({deal}) => {
         getLineItems();
     },[])
     const showFix = () => {
-        fix ? setFix(false):setFix(true)
+        up ? setUp(false):setUp(true);
+        fix ? setFix(false):setFix(true);
     }
     const onHoverIn = () => {
         !hover && setHover(true)
@@ -74,6 +76,42 @@ export const Deal = ({deal}) => {
     }
     const updateTask = async(data) => {
         console.log(data);
+        const payload = {
+            "dealId":deal.id,
+            "remito":data.remito,
+            "guia":data.guia,
+            "observaciones":data.observaciones
+        };
+        try {
+            const sendData = await fetch('http://localhost:3000/hubspot/deals',{
+                headers:{ 
+                    'Content-Type': 'application/json'
+                },
+                credentials:"include",
+                method:"PUT",
+                body: JSON.stringify(payload)
+            });
+            console.log(sendData.status);
+            setReady(true);
+        } catch (error) {
+            console.log("Error al post");
+        }
+    }
+
+    const endTask = async() => {
+        try {
+            const finalizar = await fetch(`http://localhost:3000/hubspot/task/${task.id}`,{
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                method:"PUT",
+                credentials: "include",
+                }
+            )
+            console.log(finalizar.status);
+        } catch (error) {
+            console.log(error);
+        }
         
     }
     
@@ -81,55 +119,54 @@ export const Deal = ({deal}) => {
         <>
         {task.length != 0 &&
             <Card className={`ms-5 me-5 mb-2`} onMouseEnter={onHoverIn} onMouseLeave={onHoverOut}>
-                <Card.Header className={`d-flex justify-content-between text-center ${JSON.parse(task[0].properties.hs_task_is_overdue) && "vencida"}`} >
-                    <Card.Title>{deal.properties.dealname}</Card.Title>
-                    <Button onClick={showFix} className="btn btn-info">Keep Open</Button>
+                <Card.Header className={`d-flex justify-content-between align-items-center text-center ${JSON.parse(task[0].properties.hs_task_is_overdue) && "vencida"}`} >
+                    <Card.Title className="fs-6">{deal.properties.dealname}</Card.Title>
+                    <Button onClick={showFix} className="botonFlecha">{up?<img src={down} alt="abajo" className="flecha" />:<img src={upArrow} alt="arriba" className="flecha" />}</Button>
                 </Card.Header>
                 { (hover|| fix) &&
                 <>
                     <Card.Body >
                         <Button className="btn btn-success" onClick={showDealInfo}>Deal Info</Button>
-                        <Button className="btn btn-success ms-2" onClick={showDealTask}>Task Info</Button>
-                        
-                        <form method="POST" handleSubmit={updateTask}  className="row">
+                        <Button className="btn btn-success ms-2" onClick={showDealTask}>Task Info</Button> 
+                        <form method="POST" onSubmit={handleSubmit(updateTask)}  className="row">
                             {dealInfo && 
                                 <div className="col-6 pt-2">
-                                    <div className="d-flex justify-content-between campoCard">
-                                        <p className="m-0 p-3">Observaciones para produccion: </p>
-                                        <p className="m-0 p-3">{deal.properties.observaciones_para_produccion}</p>
+                                    <div className="row d-flex justify-content-between campoCard">
+                                        <p className="m-0 p-3 col-5">Observaciones para produccion: </p>
+                                        <input className="col-6" type="text" {...register("observaciones")} name="observaciones" defaultValue={deal.properties.observaciones_para_produccion}/>
                                     </div>
-                                    <div className="d-flex justify-content-between campoCard">
-                                        <p className="m-0 p-3">Numero de remito:</p>
-                                        <input {...register("remito")}type="text" name="remito" defaultValue={deal.properties.numero_de_remito}/>
+                                    <div className="row d-flex justify-content-between campoCard">
+                                        <p className="col-5 m-0 p-3">Numero de remito:</p>
+                                        <input className="col-6" type="text"{...register("remito")} name="remito" defaultValue={deal.properties.numero_de_remito}/>
                                     </div>
-                                    <div className="d-flex justify-content-between campoCard">
-                                        <p className="m-0 p-3">Numero de guia del envio: </p>
-                                        <p className="m-0 p-3">{deal.properties.nro_de_guia_del_envio}</p>
+                                    <div className="row d-flex justify-content-between campoCard">
+                                        <p className="col-5 m-0 ps-3 pt-3 pb-3">Numero de guia del envio: </p>
+                                         <input className="col-6" type="text" {...register("guia")}name="guia" defaultValue={deal.properties.nro_de_guia_del_envio}/>
                                     </div>
+                                    <Button className="btn btn-success ms-2 w-25"  type="submit">Actualizar</Button>
                                 </div>
                             }
                             {dealTask &&
                                 <div className="col-6 pt-2">
-                                    <div className="d-flex justify-content-between campoCard">
+                                    <div className="d-flex justify-content-between align-items-center campoCard">
                                         <>
-                                            <p>Vence: {dia} - {mes} - {anio}</p> 
-                                            {JSON.parse(task[0].properties.hs_task_is_overdue) && <p>Tarea vencida</p>}
+                                            <p className="m-0">Vence: {dia} - {mes} - {anio}</p> 
+                                            {JSON.parse(task[0].properties.hs_task_is_overdue) && <p className="m-0">Tarea vencida</p>}
                                         </>
                                     </div>
-                                    <div className="d-flex justify-content-between campoCard">
+                                    <div className="d-flex justify-content-between align-items-center campoCard">
                                         <ul>
                                         {lineItems.map((item,index) => (
                                             <li key={index}>{item.properties.name} - <span className="quantity">{item.properties.quantity}</span></li>
                                         ))}
                                         </ul>
                                     </div>
-                                </div>
-                            }
-                            <Button className="btn btn-success m-5"  type="submit">Actualizar</Button>
+                                </div>  
+                            }  
                         </form>
                     </Card.Body>
                     <Card.Footer>
-                        <Button className="btn btn-danger" >Finalizar Tarea</Button>
+                        {ready && <Button className="btn btn-danger" onClick={endTask} >Finalizar Tarea</Button>}
                     </Card.Footer>
                 </>
                 }

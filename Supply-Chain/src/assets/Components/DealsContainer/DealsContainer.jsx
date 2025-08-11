@@ -4,11 +4,11 @@ import { Deal } from "../Deal/Deal";
 import { Quantum } from "ldrs/react";
 import 'ldrs/react/Quantum.css'
 
-export const DealsContainer = () => {
+export const DealsContainer = (props) => {
     const [loading,setLoading] = useState(true);
     const {getSession} = useContext(UserContext);
     const [deals,setDeals] = useState([]);
-   
+
 
     useEffect(() => {
         const getDeals = async() => {
@@ -17,7 +17,7 @@ export const DealsContainer = () => {
                 if(!sesion){
                     window.location.href = 'http://localhost:3000/hubspot/install'
                 }else{
-                    const deals = await fetch('http://localhost:3000/hubspot/deals',{
+                    const deals = await fetch(`http://localhost:3000/hubspot/deals/${props.task}/${props.completed}`,{
                         method:'GET',
                         credentials:'include'
                     });

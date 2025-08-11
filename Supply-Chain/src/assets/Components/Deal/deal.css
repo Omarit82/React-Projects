@@ -8,10 +8,34 @@
 }
 
 .vencida {
-    background-color: rgb(129, 31, 31);
+    background-color: rgb(192, 36, 36);
     color: #FFF;
 }
 
 .false {
-    background-color: rgb(188, 209, 216);
+    background-color: rgb(125, 219, 250);
+}
+
+.flecha{
+    height: 30px;
+    width: 20px;
+}
+
+.botonFlecha {
+    background-color: transparent;
+    border: none;
+}
+
+.botonFlecha:hover {
+    border:none;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.btn-success{
+    border-radius: 0;
+    background-color: blue;
+}
+.btn-success:hover {
+    background-color: rgb(0, 0, 133);
 }

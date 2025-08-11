@@ -9,4 +9,5 @@ main {
     padding: 20px;
     height: 150vh;
     overflow-y: scroll;
+    background-color: rgb(236, 236, 236);
 }
