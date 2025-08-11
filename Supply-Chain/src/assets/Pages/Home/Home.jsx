@@ -1,4 +1,4 @@
-import { TaskContainer } from "../../Components/TaskContainer/TaskContainer";
+import { DealsContainer } from "../../Components/DealsContainer/DealsContainer";
 
 
 export const Home = () => {
@@ -6,8 +6,8 @@ export const Home = () => {
     
     return(
         <main>
-            <h1 className="text-center">Home</h1>
-            <TaskContainer />
+            <h1 className="text-center">Deals</h1>
+            <DealsContainer />
         </main>
     )
 }

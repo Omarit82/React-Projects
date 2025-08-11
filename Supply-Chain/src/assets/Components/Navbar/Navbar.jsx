@@ -9,7 +9,6 @@ export const Navbar = () => {
                 <Link to="/home" className="navBarItem m-2">Home</Link>
                 <Link to="/about" className="navBarItem m-2">About</Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item><Link to='/home/3.1' className="navBarItem">Action</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to='/home/3.2' className="navBarItem">Another action</Link></NavDropdown.Item>
                 <NavDropdown.Item><Link to='/home/3.3' className="navBarItem">Something</Link></NavDropdown.Item>
                 <NavDropdown.Divider />

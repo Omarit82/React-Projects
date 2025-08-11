@@ -5,8 +5,6 @@ export const UserContext = createContext();
 export const UserProvider = ({children}) => {
     const [ usuario,setUsuario ] = useState(undefined);
 
-   
-
     const setLogin = (data) => {
         setUsuario(data);
     }
@@ -19,7 +17,6 @@ export const UserProvider = ({children}) => {
             });            
             if(session.status == 200){
                 const respuesta = await session.json();
-                console.log(respuesta);
                 if(respuesta.Session.hubspotToken){
                     return true;
                 }else{

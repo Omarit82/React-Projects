@@ -1,0 +1,17 @@
+.campoCard {
+    border: 1px solid gray;
+    padding: 0 5px 0 5px;
+    margin-bottom: 5px;
+}
+.quantity {
+    font-weight: bold;
+}
+
+.vencida {
+    background-color: rgb(129, 31, 31);
+    color: #FFF;
+}
+
+.false {
+    background-color: rgb(188, 209, 216);
+}
