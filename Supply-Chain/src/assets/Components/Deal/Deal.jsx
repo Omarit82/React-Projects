@@ -31,7 +31,7 @@ export const Deal = ({deal}) => {
                     setTask(resultado.Task);                                        
                 }    
             } catch (error) {
-                console.log(error);
+                //console.log(error);
             }
         };
         getTarea();
@@ -54,7 +54,9 @@ export const Deal = ({deal}) => {
                 }
             )
             const respuesta = await items.json();
-            setLineItems(respuesta.Payload.results);            
+            if(respuesta.Payload.results){
+                setLineItems(respuesta.Payload.results);   
+            }
         }
         getLineItems();
     },[])
@@ -114,7 +116,7 @@ export const Deal = ({deal}) => {
         }
         
     }
-    
+   
     return(
         <>
         {task.length != 0 &&
