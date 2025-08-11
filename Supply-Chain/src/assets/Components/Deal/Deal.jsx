@@ -116,6 +116,10 @@ export const Deal = ({deal}) => {
         }
         
     }
+
+    const createRemito = () => {
+
+    }
    
     return(
         <>
@@ -128,8 +132,11 @@ export const Deal = ({deal}) => {
                 { (hover|| fix) &&
                 <>
                     <Card.Body >
-                        <Button className="btn btn-success" onClick={showDealInfo}>Deal Info</Button>
-                        <Button className="btn btn-success ms-2" onClick={showDealTask}>Task Info</Button> 
+                        <div className="d-flex">
+                            <Button className="btn btn-info" onClick={showDealInfo}>Deal Info</Button>
+                            <Button className="btn btn-info ms-2" onClick={showDealTask}>Task Info</Button>
+                            <Button className="btn btn-info ms-2" onClick={createRemito}>Generar Remito</Button>
+                        </div> 
                         <form method="POST" onSubmit={handleSubmit(updateTask)}  className="row">
                             {dealInfo && 
                                 <div className="col-6 pt-2">
