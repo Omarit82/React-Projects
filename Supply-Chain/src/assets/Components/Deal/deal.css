@@ -6,10 +6,26 @@
 .quantity {
     font-weight: bold;
 }
+#buttonCard:active {
+    background-color: transparent;
+}
 
+.card-title{
+    color: darkslategray;
+}
+
+.cardHeader{
+    padding: 0;
+    height: 45px;
+}
 .vencida {
-    background-color: rgb(192, 36, 36);
-    color: #FFF;
+    height: 30px;
+    border:  red 2px solid;
+    border-radius: 50%;
+}
+.tarjeta {
+    background-color: lightgray;
+    border-radius: 0;
 }
 
 .false {
@@ -20,17 +36,20 @@
 .flecha{
     height: 30px;
     width: 20px;
+    margin-right: 5px;
 }
 
 .botonFlecha {
     background-color: transparent;
     border: none;
+    scroll-margin-top: 100px
 }
 
 .botonFlecha:hover {
     border:none;
     border-radius: 50%;
-    background-color: red;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .btn-success{
@@ -39,4 +58,8 @@
 }
 .btn-success:hover {
     background-color: rgb(0, 0, 133);
+}
+
+input {
+    background-color: transparent;
 }

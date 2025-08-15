@@ -1,0 +1,13 @@
+.ascDesc{
+    background-color: darkblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 35px;
+}
+
+#searchBar{
+    height:35px;
+    border: 2px solid darkgray;
+}

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import './header.css'
 import { UserContext } from '../../Contexts/UserContext/UserContext'
 
@@ -18,13 +18,13 @@ export const Header = () => {
             </div>
             <div className='col-2 avatar m-0 mt-2'> 
                 { usuario && 
-                    <div className="d-flex align-items-center justify-content-around">
-                        <div>
-                            <img src={usuario.avatar} alt="Avatar" className='avatar m-2' />
-                            <p>{usuario.apellido}, {usuario.nombre}</p>
-                        </div>
-                        <button className="btn btn-info button-logout ms-2" onClick={logout}>Logout</button>
-                    </div>}
+                <div className="d-flex flex-column align-items-center justify-content-around">
+                    <div>
+                        <img src={usuario.avatar} alt="Avatar" className='avatar m-2' />
+                        <p>{usuario.apellido}, {usuario.nombre}</p>
+                    </div>
+                    <button className="btn btn-info button-logout" onClick={logout}>Logout</button>
+                </div>}
             </div>
         </header>
     )
