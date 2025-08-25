@@ -10,8 +10,15 @@
     background-color: transparent;
 }
 
-.card-title{
+.colorFont{
     color: darkslategray;
+}
+.observaciones{
+    display: flex;
+    flex-wrap: wrap;
+    color: darkslategray;
+    margin: 0;
+    padding: 0;
 }
 
 .cardHeader{
@@ -51,15 +58,43 @@
     background-color: transparent;
     cursor: pointer;
 }
-
+.btn-info{
+    border-radius: 0;
+}
+.btn-danger{
+    border-radius: 0;
+}
 .btn-success{
     border-radius: 0;
-    background-color: blue;
+    background-color: rgb(5, 139, 0);
 }
 .btn-success:hover {
-    background-color: rgb(0, 0, 133);
+    background-color: rgb(41, 77, 0);
 }
 
 input {
     background-color: transparent;
+}
+
+.redPoint{
+    background-color: red;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
+.orangePoint{
+    background-color: orange;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
+.greenPoint{
+    background-color: green;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
+.prioridad{
+    color:darkslategray;
+    margin-right: 10px;
 }

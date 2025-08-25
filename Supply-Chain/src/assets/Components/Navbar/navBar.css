@@ -1,3 +1,7 @@
 .navBarItem {
     text-decoration: none;
 }
+dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+}

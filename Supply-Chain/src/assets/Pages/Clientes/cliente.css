@@ -1,0 +1,12 @@
+.clienteForm {
+    border: solid 2px black;
+    padding: 20px;
+}
+
+.clienteForm{
+    input{
+        border: darkslategray 1px solid;
+        width: 75%;
+        margin: 5px auto;
+    }       
+}

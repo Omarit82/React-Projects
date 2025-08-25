@@ -1,23 +1,28 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
 import { Deal } from "../Deal/Deal";
-import { Quantum } from "ldrs/react";
-import 'ldrs/react/Quantum.css'
+import { Grid} from "ldrs/react";
+import 'ldrs/react/Quantum.css';
+import 'ldrs/react/Grid.css';
 import { Button } from "react-bootstrap";
 import './dealsContainer.css';
+import { ProductContext } from "../../Contexts/ProductContext/ProductContext";
 
 export const DealsContainer = (props) => {
-    const [loading, setLoading] = useState(true);
     const { getSession } = useContext(UserContext);
+    
+    const [loading, setLoading] = useState(true);
     const [deals, setDeals] = useState([]);
     const [ordenAscendente, setOrdenAscendente] = useState(true);
     const [search,setSearch] = useState(null);
+ 
+   
 
     const ordenPrioridad = {
-        ninguna: 0,
-        low: 1,
-        media: 2,
-        alta: 3,
+        NONE: 0,
+        LOW: 1,
+        MEDIUM: 2,
+        HIGH: 3,
     };
 
     const ordenarDeals = (arr, asc = true) => {
@@ -34,7 +39,7 @@ export const DealsContainer = (props) => {
         return asc ? fa - fb : fb - fa;
         });
     };
-
+    /**BUSCADOR */
     const searchText = (e) => {
         setSearch(e.target.value);
     }
@@ -42,30 +47,34 @@ export const DealsContainer = (props) => {
     const filteredDeals = deals.filter(dl =>
         !search || dl.properties.dealname?.toLowerCase().includes(search.toLowerCase())
     );
-
+    /*************/
     useEffect(() => {
+        let mounted = true;
         const getDeals = async () => {
             try {
                 const sesion = await getSession();
                 if (!sesion) {
                     window.location.href = 'http://localhost:3000/hubspot/install';
-                } else {
-                    const respuesta = await fetch(`http://localhost:3000/hubspot/deals/${props.deal}/${props.completed}`,
-                        { method: 'GET', credentials: 'include' }
-                    );
-                    if (respuesta.ok) {
-                        const resultado = await respuesta.json();
-                        setDeals(ordenarDeals(resultado.Deals.results, ordenAscendente));
-                    }
+                    return;
                 }
-                setLoading(false);
+                const respuesta = await fetch(
+                    `http://localhost:3000/hubspot/deals/${props.deal}/${props.completed}`,
+                    { method: 'GET', credentials: 'include' }
+                );
+                if (respuesta.ok && mounted) {
+                    const resultado = await respuesta.json();
+                    const dealsList = resultado?.Deals?.results ?? [];
+                    setDeals(ordenarDeals(dealsList, ordenAscendente));
+                }
             } catch (error) {
                 console.error(error);
-                setLoading(false);
+            } finally {
+                if (mounted) setLoading(false);
             }
         };
         getDeals();
-    }, [props.deal, props.completed]);
+        return () => { mounted = false; };
+    }, [props.deal, props.completed, ordenAscendente]);
 
     const dealSinTask = (id) => {
         setDeals((prev) => {
@@ -74,7 +83,7 @@ export const DealsContainer = (props) => {
         });
     };
 
-    const addFecha = (id, fecha,prioridad) => {
+    const addFecha = (id, fecha, prioridad) => {
         setDeals((prev) => {
             const actualizado = prev.map((dl) =>
                 dl.id === id ? { ...dl, fecha,prioridad} : dl
@@ -95,7 +104,7 @@ export const DealsContainer = (props) => {
         <div className="d-flex flex-column">
             {loading ? (
                 <div className="m-auto mt-3">
-                    <Quantum className="m-auto" speed="0.7" size="120" color="#005be4ff" />
+                    <Grid className="m-auto" speed="0.7" size="250" color="#3b89ffff" />
                 </div>
                 ):(
                 <>
@@ -106,7 +115,7 @@ export const DealsContainer = (props) => {
                         <input type="text" name="searchBar" id="searchBar" placeholder="... search ..." className="text-center" onChange={searchText}/>
                     </div>
                     {filteredDeals.map((deal) => (
-                        <Deal deal={deal} key={deal.id} setFecha={addFecha} dealSinTask={dealSinTask} />
+                        <Deal deal={deal} key={deal.id} setFecha={addFecha} dealSinTask={dealSinTask}/>
                     ))}
                 </>
             )}
