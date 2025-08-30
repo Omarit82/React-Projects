@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
 import { Deal } from "../Deal/Deal";
 import { Grid} from "ldrs/react";
+import { Button } from "react-bootstrap";
 import 'ldrs/react/Quantum.css';
 import 'ldrs/react/Grid.css';
-import { Button } from "react-bootstrap";
 import './dealsContainer.css';
-import { ProductContext } from "../../Contexts/ProductContext/ProductContext";
+
 
 export const DealsContainer = (props) => {
     const { getSession } = useContext(UserContext);
@@ -45,7 +45,7 @@ export const DealsContainer = (props) => {
     }
    
     const filteredDeals = deals.filter(dl =>
-        !search || dl.properties.dealname?.toLowerCase().includes(search.toLowerCase())
+        !search || dl.properties.dealname?.toLowerCase().includes(search.toLowerCase()) || dl.id?.includes(search)
     );
     /*************/
     useEffect(() => {
@@ -104,7 +104,7 @@ export const DealsContainer = (props) => {
         <div className="d-flex flex-column">
             {loading ? (
                 <div className="m-auto mt-3">
-                    <Grid className="m-auto" speed="0.7" size="250" color="#3b89ffff" />
+                    <Grid className="m-auto" speed="0.7" size="250" color="#002255ff" />
                 </div>
                 ):(
                 <>

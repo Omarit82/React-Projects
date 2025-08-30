@@ -15,7 +15,7 @@ import { Clientes } from "./assets/Pages/Clientes/Clientes.jsx";
 import { Amiar } from "./assets/Pages/Amiar/Amiar.jsx"
 import { ListProducts } from "./assets/Pages/ListProducts/ListProducts.jsx"
 import { ProductProvider } from "./assets/Contexts/ProductContext/ProductContext.jsx"
-import { Remito } from "./assets/Pages/Remito/Remito.jsx"
+import { Remitos } from "./assets/Pages/Remitos/Remitos.jsx"
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
           <Route path='/amiar' element={<ProtectedRoute><Amiar /></ProtectedRoute>} />
           <Route path='/clientes' element={<ProtectedRoute><Clientes /></ProtectedRoute>} />
           <Route path='/productos' element={<ProtectedRoute><ListProducts /></ProtectedRoute>} />
-          <Route path='/remito' element={<ProtectedRoute><Remito /></ProtectedRoute>} />
+          <Route path='/remitos' element={<ProductProvider><Remitos /></ProductProvider>} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -3,11 +3,23 @@
     margin:0;
     border:0;
     box-sizing: border-box;
+    scrollbar-width: none;
 }
 
 main {
     padding: 20px;
-    height: 150vh;
+    height: 180vh;
     overflow-y: scroll;
-    background-color: rgb(236, 236, 236);
+    background-image: url('./assets/Images/fondo_metal.jpeg');
+    background-size: cover;     
+    background-position: center;  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h2{
+    color: #2C4770;
+    font-weight: bolder;
+    font-size: 45px;;
+    -webkit-text-stroke: 2px #ffffff;
 }
