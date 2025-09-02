@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import google from '../../Images/google.png';
-import './login.css'
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
 

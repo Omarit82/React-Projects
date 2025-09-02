@@ -1,4 +1,4 @@
-import { Button, Card, Form, Modal, Table } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import './deal.css';
 import { useEffect, useRef, useState,useContext } from "react";
 import down from '../../Images/down.png';
@@ -7,24 +7,10 @@ import signo from '../../Images/admiracion.png';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { ProductContext } from "../../Contexts/ProductContext/ProductContext"
+import { PriorityBadge } from "./PriorityBadge";
+import { LineItemList } from "./LineItemList";
+import { RemitoModal } from "./RemitoModal";
 
-
-const PriorityBadge = ({ color, label }) => (
-    <div className="d-flex align-items-center prioridad">
-        {label}
-        <div className={`${color}Point ms-2`} />
-    </div>
-);
-const LineItemList = ({ lineItems }) => (
-    <ul className="p-0 ps-4">
-        {lineItems.map((item, index) => (
-            <li key={index}>
-                {item.properties.name} -{" "}
-                <span className="quantity">{item.properties.quantity}</span>
-            </li>
-        ))}
-    </ul>
-);
 
 export const Deal = ({ deal, setFecha, dealSinTask}) => {
     
@@ -41,7 +27,6 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
     const [year, setYear] = useState();
     const [showModal,setShowModal] = useState(false);
     const { products, getProducts } = useContext(ProductContext);
-    const {register,handleSubmit} = useForm();
 
     // Obtener tarea asociada
     useEffect(() => {
@@ -121,7 +106,6 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
         setUp((prev) => !prev);
         setFix((prev) => !prev);
     };
-
     const priorityChange = async () => {
         if (!task.length) return;
         try {
@@ -181,7 +165,6 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
             console.error(error);
         }
     };
-
     const endTask = async () => {
         if (!task.length) return;
         try {
@@ -221,8 +204,6 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
             guia: deal.properties.nro_de_guia_del_envio,
         });
     }, [deal, reset]);
-
-    const handleClose = () => setShowModal(false);
     
     useEffect(()=>{
         try {
@@ -235,111 +216,10 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
         }
     },[])
 
-    const handleChange = (event,anteriorId)=>{
-        let nuevoProducto = products.filter( it => it.properties.name == event.target.value);
-        const lineItemsSinOld = lineItems.filter( it => it.properties.hs_product_id != parseInt(anteriorId));
-        const nuevoLineItems = [...lineItemsSinOld,nuevoProducto[0]];
-        setLineItems(nuevoLineItems);
-    }
-
-    const handleQuantity = (prod,e) => {
-        const aux = lineItems;
-        const item = aux.find(it => it.properties.hs_product_id == prod.properties.hs_product_id)
-        const listaReducida = aux.filter(it => it.properties.hs_product_id != prod.properties.hs_product_id);
-        item.properties.quantity = e.target.value;
-        const res = [...listaReducida,item];
-        setLineItems(res);
-    }
-
-    const onSubmit = async(data) => {
-        for (const element of data.items) {
-            const prod = products.find((it) => (it.id == element.elemento));
-            element.info_uno_id = prod.properties.info_uno_id;    
-        }
-        const items = data.items;
-        const clientData = dataRemito.Payload.properties;
-        const payload={clientData,items};     
-
-        /**Data trae la cantidad y el id de los productos del remito tengo que pasarle ademas el identificador de bejerman*/    
-        const res = await fetch('http://localhost:3000/remitos/save',{
-            headers:{
-                'Content-type': 'application/json'
-            },
-            method:"POST",
-            credentials:'include',
-            body: JSON.stringify(payload)
-        });
-        if(res.ok){
-            Swal.fire({
-                toast:true,
-                icon:"success",
-                title:"Remito generado",
-                timer:1500,
-                showConfirmButton: false,
-                background:"darkslategray",
-                color:"white",
-                position:"top-right"
-            }).then(async ()=>{
-                setShowModal(false);
-                const blob = await res.blob();
-                const url = window.URL.createObjectURL(blob);
-                window.open(url,"_blank");
-            })
-        }else{
-            Swal.fire({
-                title:"Error",
-                text:"Error al generar el pdf",
-                icon:"error"
-            });
-        }  
-    }
-
-
+   
     return (
         <>
-            {/***MODAL REMITO***/
-                <Modal show={showModal} onHide={handleClose}>
-                    <Form onSubmit={handleSubmit(onSubmit)} >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Resumen Remito:</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Table striped bordered hover>
-                                <thead>
-                                    <tr>
-                                        <th> Item</th>
-                                        <th> Cantidad</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {lineItems.map((elemento, index) => (
-                                        <tr key={elemento.id}>
-                                            <td className="p-3">
-                                            <Form.Select {...register(`items.${index}.elemento`)} defaultValue={elemento.properties.hs_product_id}>
-                                                <option value={elemento.properties.hs_product_id}>
-                                                    {elemento.properties.name}
-                                                </option>
-                                                {products.map((opcion) => (
-                                                    <option key={opcion.id} value={opcion.properties.hs_product_id}>
-                                                        {opcion.properties.name}
-                                                    </option>
-                                                ))}
-                                            </Form.Select>
-                                            </td>
-                                            <td className="p-3"><input type="number" min="0" step="1" className="text-center campoCantidad" {...register(`items.${index}.quantity`)} defaultValue={elemento.properties.quantity ?? 0} /></td>
-                                        </tr>
-                                        ))}
-                                </tbody>
-                            </Table>                            
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" type="submit" >Registrar</Button>
-                            <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                        </Modal.Footer>
-                    </Form>
-                </Modal>
-            }
-
+            {showModal && <RemitoModal dataRemito={dataRemito} lineItems={lineItems} products={products} setShowModal={setShowModal}/>}
             {task.length !== 0 && (
                 <Card className="ms-5 me-5 mb-2 tarjeta">
                         <Card.Header className="cardHeader">
@@ -360,8 +240,7 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
                                 </div>
                             </Button>
                         </Card.Header>
-                    {fix && 
-                    (
+            {fix && (
                     <>
                         <Card.Body>
                             <div className="row">

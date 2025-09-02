@@ -109,6 +109,10 @@ input {
     border-radius: 5px;
     height: 35px;
 }
+.confirmacion {
+    font-weight: 100;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+}
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

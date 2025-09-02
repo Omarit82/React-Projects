@@ -5,7 +5,8 @@ export const ProductContext = createContext();
 export const ProductProvider = ({children}) => {
     const [products ,setProducts] = useState([]);
 
-     const ordenarProducts = (arr, asc = true) => {
+    const ordenarProducts = (arr, asc = true) => {
+        /** FILTRA LOS PRODUCTOS DE HUBSPOT - SI NO TIENE ID DE INFO UNO SE FILTRA DE LA LISTA. */
         const aux = arr.filter(item => item.properties.info_uno_id != null) 
         return [...aux].sort((a, b) => {
             const pa = a.properties.info_uno_id ?? 'zz';
