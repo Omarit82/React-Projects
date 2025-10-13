@@ -1,93 +1,109 @@
 import { Button, Form, Modal, Table } from "react-bootstrap"
 import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import Kit from '../Prod/Kit.js'
 
 /***REMITO MODAL ***/
-/**
- * El modal muestra el resumen del remito.
- * 
- *          Si la info traida por la data contiene Comunicadores o Citymesh se debe considerar un Producto compuesto.
- *       ---Debe contener Packaging, Tarugos y Carcasa
- *          ARG | CITY WIFI 2050255212
- *          FS  | CITY WIFI 2183953037
- *          ARG | CITY LAN  133361037
- *          FS  | CITY LAN  2049843507
- *          ARG | CITY 3G   1020036383
- *          FS  | CITY 3G   2045095501
- *          ARG | CITY 4G   1020036384
- *  
- *          Si ademas es comunicador:
- *      ---Debe incluir placa BusDatos.
- *          ARG | COM WIFI 1020036379  
- *          FS  | COM WIFI 2014786226  
- *          ARG | COM 3G   1020036382    
- *          FS  | COM 3G   2015561276   
- *          ARG | COM 4G   2050269082    
- *          FS  | COM 4G   2050255205   
- * 
- *          Si el item es un Kit:
- *       El equipo se trata como lo detallado arriba, y se agrega:
- *       ---
- *          Kit Panel 4G Lite   | 22423267887
- *          Kit Panel 4G        | 18086374667
- *          Kit Panel 3G        | 2452300649
- *          Kit Panel WIFI      | 2452159354
- *          
- */
 export const RemitoModal = ({dataRemito,lineItems,setShowModal,products}) => {
-    console.log(products);
-    
     const {register,handleSubmit,control} = useForm({defaultValues:{items:lineItems}});
     const { fields, append,remove } = useFieldArray({control,name:"items"});
-    
+
+    const complementos = (q) => {
+        const array = [
+            {id:11,properties:{info_uno_id:"CARCASA",name:"Carcasa Plástica Citymesh"},quantity:q,visible:false},
+            {id:12,properties:{info_uno_id:"TORNILLOSYTARUGOS",name:"Juego de Tornillos y Tarugos Citymesh"},quantity:q,visible:false},
+            {id:13,properties:{info_uno_id:"PACKAGING",name:"Packaging Citymesh"},quantity:q,visible:false}
+        ]
+        return array;
+    }
+
+    const complementosKit = (q) => {
+        const array =[//2 movimiento ,magnetico, sirena,control,bateria,fuente, packaging kit, packaging fuente
+            {id:2477838256,properties:{info_uno_id:"SP02-ZB",name:"Sensor de Movimiento Meian Citymesh"},quantity:q*2},
+            {id:2724802647,properties:{info_uno_id:"DW02-ZB",name:"Sensor Magnético Meian Citymesh"},quantity:q},
+            {id:139934834,properties:{info_uno_id:"HS2WD-EFR1",name:"Sirena Heiman"},quantity:q},
+            {id:2477838258,properties:{info_uno_id:"PB02-ZB",name:"Control Remoto Meian Citymesh"},quantity:q},
+            {id:140962813,properties:{info_uno_id:"2P703060",name:"Batería 3,7V"},quantity:q},
+            {id:2444485988,properties:{info_uno_id:"FGML",name:"Fuente 12 V 2 A"},quantity:q},
+            {id:14,properties:{info_uno_id:"KITPACKAGING",name:"Packaging KIT - Cityymesh"},quantity:q,visible:false},
+            {id:15,properties:{info_uno_id:"FUENTEPACKAGING",name:"Packaging para fuente en KIT - Citymesh"},quantity:q,visible:false},
+        ]
+        return array;
+    }
     /** Submit de la data al remito.**/
     const onSubmit = async(data) => {
-        for (const element of data.items) {
-            // busca dentro de la lista de productos de hubspot y a cada item pasado por la data le agrega la propiedad info_uno_id
-            const prod = products.find((it) => (it.id == element.elemento));
-            element.info_uno_id = prod.properties.info_uno_id;    
-        }
-        /**Data trae la cantidad y el id de los productos del remito tengo que pasarle ademas el identificador de bejerman*/    
-        const items = data.items;
-        const clientData = dataRemito.Payload.properties;
-        const payload={clientData,items,products};     
-        /** switch para manerjar las opciones de id **/
-        items.forEach(item => {
-            switch (parseInt(item.elemento)) {
-                case 22423267887:
-                case 18086374667:
-                case 2452300649:
-                case 2452159354:
-                    console.log("Es un kit",item);
-                    const kit = new Kit(item.id,item.info_uno_id,`kit_${item.properties.name}`,item.quantity);
-                    for(let i = 0; i< kit.complemento.length; i++){
-                        /** Si el elemento a agregar ya esta en la lista sumo las cantidades. **/
-                    }
-                    break;
-                case 2050255212:
-                case 2183953037: 
-                case 133361037:
-                case 2049843507: 
-                case 1020036379:
-                case 2045095501:
-                case 1020036384:
-                case 2014786226:
-                case 1020036382:
-                case 2015561276:
-                case 2050269082:
-                case 2050255205:
-                    console.log("Es un equipo",item);
-                    break;
-                default:
-                    console.log("Es otro item",item);
-                    break;
-            }  
+        const aux = [];
+        data.items.forEach(element => {
+            let reemplazo = products.find(it => it.id == element.elemento);
+            reemplazo.quantity = parseInt(element.quantity);
+            aux.push(reemplazo);
         });
-        
-       
-        
-        /*
+        let cantidadEquipos=0;
+        let cantidadKits=0;    
+        const remitar=[];      
+        aux.forEach(elemento => {
+            //CII lan:133361037,2049843507 -CII wifi:2050255212,2183953037 - CII 3g: 1020036383,2045095501 - CII 4g:1020036384,2452159355
+            //Com wifi: 1020036379,2014786226- Com 3g:1020036382,2015561276 -Com 4g: 2050269082,2050255205
+            let i = elemento.id;
+            if(i=='133361037'||i=='2049843507'||i=='2050255212'||i=='2183953037'||i=='1020036383'||i=='2045095501'||i=='1020036384'||i=='2452159355'||i=='1020036379'||i=='2014786226'||i=='1020036382'||i=='2015561276'||i=='2050269082'||i=='2050255205'){
+                const equipo = products.find((it)=>it.id == i);
+                cantidadEquipos+=parseInt(elemento.quantity);
+                remitar.push({producto:equipo,cantidad:parseInt(elemento.quantity)});
+            }else if(i=='22423267887'||i=='18086374667'||i=='2452300649'||i=='2452159354'){
+                let equipo;
+                switch (i) {
+                    case '22423267887':
+                        equipo = products.find((it)=>it.id == '1020036384');
+                        remitar.push({producto:equipo,cantidad:parseInt(elemento.quantity)});
+                        break;
+                    case '18086374667':
+                        equipo = products.find((it)=>it.id == '1020036384');
+                        remitar.push({producto:equipo,cantidad:parseInt(elemento.quantity)});
+                        break;
+                    case '2452300649':
+                        equipo = products.find((it)=>it.id == '1020036383');
+                        remitar.push({producto:equipo,cantidad:parseInt(elemento.quantity)});
+                        break;
+                    case '2452159354':
+                        equipo = products.find((it)=>it.id == '2050255212');
+                        remitar.push({producto:equipo,cantidad:parseInt(elemento.quantity)});
+                        break;
+                }  
+                cantidadEquipos+=parseInt(elemento.quantity);     
+                cantidadKits+=parseInt(elemento.quantity);       
+            }else{
+                remitar.push({producto:elemento,cantidad:parseInt(elemento.quantity)});
+            }
+        }); 
+        if(cantidadEquipos>0){
+            const aux = complementos(cantidadEquipos);
+            aux.forEach(element => {
+                remitar.push({producto:element,cantidad:cantidadEquipos});
+            });
+        }
+        if(cantidadKits>0){
+            const aux = complementosKit(cantidadKits);
+            aux.forEach(element => {
+                if(element.id == 2477838256){
+                    remitar.push({producto:element,cantidad:cantidadKits*2});;
+                }else{
+                    remitar.push({producto:element,cantidad:cantidadKits});
+                }
+            });
+        }
+        //ANALIZO EL ARREGLO remitar POR ELEMENTOS DUPLICADOS, SI ESTAN DUPLICADOS ELIMINO UNO Y SUMO LAS CANTIDADES.
+        console.log(remitar);
+        for (let i=0; i<(remitar.length-1);i++){
+            let elemento = remitar[i];
+            for (let j=i+1;j<remitar.length;j++){
+                if(parseInt(elemento.producto.id) === remitar[j].producto.id){
+                    /**Encontro un elemento duplicado en el arreglo.**/
+                    const eliminado = remitar.splice(j,1);
+                    remitar[i].cantidad = parseInt(remitar[i].cantidad)+ parseInt(eliminado[0].cantidad);
+                }
+            }
+        }         
+        const clientData = dataRemito.Payload.properties;
+        const payload={clientData,remitar,products};  
         const res = await fetch('http://localhost:3000/remitos/save',{
             headers:{
                 'Content-type': 'application/json'
@@ -121,7 +137,7 @@ export const RemitoModal = ({dataRemito,lineItems,setShowModal,products}) => {
                 text:"Error al generar el pdf",
                 icon:"error"
             });
-        }*/
+        }
     }
 
     const eliminarItem =  (index) => {
@@ -152,15 +168,17 @@ export const RemitoModal = ({dataRemito,lineItems,setShowModal,products}) => {
                             {fields.map((field,index)=>(
                                 <tr key={field.id}>
                                     <td className="p-3">
-                                    <Form.Select {...register(`items.${index}.elemento`)} defaultValue={field.properties.hs_product_id}>
-                                        {products.map((opcion) => (
-                                            <option key={opcion.id} value={opcion.id}>
-                                                {opcion.properties.name}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
+                                        <Form.Select {...register(`items.${index}.elemento`)} defaultValue={field.properties.hs_product_id}>
+                                            {products.map((opcion) => (
+                                                <option key={opcion.id} value={opcion.id}>
+                                                    {opcion.properties.name}
+                                                </option>
+                                            ))}
+                                        </Form.Select>
                                     </td>
-                                    <td className="p-3"><input type="number" min="0" step="1" className="text-center campoCantidad" {...register(`items.${index}.quantity`)} defaultValue={field.properties.quantity ?? 0} /></td>
+                                    <td className="p-3"> 
+                                        <input type="number" min="0" step="1" className="text-center campoCantidad" {...register(`items.${index}.quantity`)} defaultValue={field.properties.quantity ?? 0} />
+                                    </td>
                                     <td key={`erase_${field.id}`} className="p-3 text-center">
                                         <Button id={`erase_${field.id}`} onClick={()=>eliminarItem(index)} className="btn-danger">Eliminar</Button>
                                     </td>

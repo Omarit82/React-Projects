@@ -1,10 +1,8 @@
-import Componente from "./Componente.js";
-import Periferico from "./Periferico.js";
 
-class Kit extends Componente{
+
+class Kit{
     
     constructor(id,info,name, quantity){
-        super(id,name,quantity)
         this.info=info;
         this.complemento = [
             new Periferico(2724802647,"DW02-ZB","Sensor Magnético Meian",1),

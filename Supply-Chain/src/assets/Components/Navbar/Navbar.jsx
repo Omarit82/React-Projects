@@ -10,7 +10,8 @@ export const Navbar = () => {
                     <Link to="/home" className="navBarItem m-2 ms-5">Citymesh</Link>
                     <Link to="/reparaciones" className="navBarItem m-2">Reparaciones</Link>
                     <Link to='/amiar' className="navBarItem m-2">Amiar</Link>
-                    <Link to='/tareas_completas' className="navBarItem m-2">Tareas Completas</Link>
+                    <Link to='/linkDealEmpresas' className="navBarItem m-2">Link Negocio-Empresas</Link>
+                    <Link to='/despachosReales' className="navBarItem m-2">Despachos Reales</Link>
                     <NavDropdown title="Administracion" id="basic-nav-dropdown" >
                         <NavDropdown.Item className="navBarItem m-0"><Link to='/productos' >Productos</Link></NavDropdown.Item>
                         <NavDropdown.Item className="navBarItem m-0"><Link to='/stock' >Stock</Link></NavDropdown.Item>

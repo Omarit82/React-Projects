@@ -114,10 +114,10 @@ export const Deal = ({ deal, setFecha, dealSinTask}) => {
                 text:"Seleccione Prioridad: ",
                 input:"radio",
                 inputOptions:{
-                    NONE: "NONE",
-                    LOW: "LOW",
-                    MEDIUM: "MEDIUM",
-                    HIGH: "HIGH"
+                    NONE: "En Produccion",
+                    LOW: "A cerrar - Retiro Andreani",
+                    MEDIUM: "A cerrar - Retiro local",
+                    HIGH: "Prioridad Alta."
                 },
                 inputValidator:(value) => {
                     if(!value){

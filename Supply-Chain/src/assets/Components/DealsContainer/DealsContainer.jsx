@@ -9,15 +9,12 @@ import './dealsContainer.css';
 
 
 export const DealsContainer = (props) => {
-    const { getSession } = useContext(UserContext);
-    
+    const { getSession } = useContext(UserContext);   
     const [loading, setLoading] = useState(true);
     const [deals, setDeals] = useState([]);
     const [ordenAscendente, setOrdenAscendente] = useState(true);
     const [search,setSearch] = useState(null);
  
-   
-
     const ordenPrioridad = {
         NONE: 0,
         LOW: 1,
@@ -57,10 +54,12 @@ export const DealsContainer = (props) => {
                     window.location.href = 'http://localhost:3000/hubspot/install';
                     return;
                 }
-                const respuesta = await fetch(
-                    `http://localhost:3000/hubspot/deals/${props.deal}/${props.completed}`,
-                    { method: 'GET', credentials: 'include' }
-                );
+                const respuesta = await fetch(`http://localhost:3000/hubspot/deals/${props.deal}/${props.completed}`,
+                { 
+                    headers:{"Content-Type": "application/json"},
+                    method: 'GET', 
+                    credentials: 'include',     
+                });
                 if (respuesta.ok && mounted) {
                     const resultado = await respuesta.json();
                     const dealsList = resultado?.Deals?.results ?? [];

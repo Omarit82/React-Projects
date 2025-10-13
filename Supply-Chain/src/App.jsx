@@ -10,12 +10,13 @@ import { Register } from "./assets/Pages/Register/Register"
 import { Home } from "./assets/Pages/Home/Home"
 import {ProtectedRoute} from "./assets/Components/ProtectedRoute/ProtectedRoute.jsx"
 import { Reparaciones } from "./assets/Pages/Reparaciones/Reparaciones.jsx"
-import { TareasCompletas } from "./assets/Pages/TareasCompletas/TareasCompletas.jsx"
 import { Clientes } from "./assets/Pages/Clientes/Clientes.jsx";
 import { Amiar } from "./assets/Pages/Amiar/Amiar.jsx"
 import { ListProducts } from "./assets/Pages/ListProducts/ListProducts.jsx"
 import { ProductProvider } from "./assets/Contexts/ProductContext/ProductContext.jsx"
 import { Remitos } from "./assets/Pages/Remitos/Remitos.jsx"
+import { LinkDealEmpresa } from "./assets/Pages/LinkDealEmpresa/LinkDealEmpresa.jsx"
+import { DespachosReales } from "./assets/Pages/DespachosReales/DespachosReales.jsx"
 
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} /> 
           <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path='/reparaciones' element={<ProtectedRoute><Reparaciones /></ProtectedRoute>} />
-          <Route path='/tareas_completas' element={<ProtectedRoute><TareasCompletas /></ProtectedRoute>} />
+          <Route path='/linkDealEmpresas' element={<ProtectedRoute><LinkDealEmpresa /></ProtectedRoute>} />
+          <Route path='/despachosReales' element={<ProtectedRoute><DespachosReales /></ProtectedRoute>} />
           <Route path='/amiar' element={<ProtectedRoute><Amiar /></ProtectedRoute>} />
           <Route path='/clientes' element={<ProtectedRoute><Clientes /></ProtectedRoute>} />
           <Route path='/productos' element={<ProtectedRoute><ListProducts /></ProtectedRoute>} />

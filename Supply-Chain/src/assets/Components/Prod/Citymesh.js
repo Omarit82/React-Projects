@@ -1,10 +1,8 @@
-import Componente from "./Componente";
-import Periferico from "./Periferico";
 
-class Citymesh extends Componente{
+
+class Citymesh{
     
     constructor(id,info,name, quantity){
-        super(id,name,quantity)
         this.info=info;
         this.complemento = [
             new Periferico(1,"CARCASA","Carcasa Plástica Citymesh",quantity),

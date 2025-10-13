@@ -77,6 +77,9 @@
 input {
     background-color: transparent;
 }
+.swal2-radio{
+    flex-direction: column;
+}
 
 .redPoint{
     background-color: red;
