@@ -13,13 +13,13 @@ export const Navbar = () => {
                     <Link to='/linkDealEmpresas' className="navBarItem m-2">Link Negocio-Empresas</Link>
                     <Link to='/despachosReales' className="navBarItem m-2">Despachos Reales</Link>
                     <NavDropdown title="Administracion" id="basic-nav-dropdown" >
-                        <NavDropdown.Item className="navBarItem m-0"><Link to='/productos' >Productos</Link></NavDropdown.Item>
-                        <NavDropdown.Item className="navBarItem m-0"><Link to='/stock' >Stock</Link></NavDropdown.Item>
-                        <NavDropdown.Item className="navBarItem m-0 "><Link to='/recibos' >Recibos</Link></NavDropdown.Item>
-                        <NavDropdown.Item className="navBarItem m-0"><Link to='/remitos' >Remitos</Link></NavDropdown.Item>
-                        <NavDropdown.Item className="navBarItem m-0"><Link to='/clientes' >Clientes</Link></NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/productos'>Productos</NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/stock'>Stock</NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/recibos' >Recibos</NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/remitos'>Remitos</NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/clientes'>Clientes</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item className="navBarItem m-0"><Link to='/datos' >Analisis</Link></NavDropdown.Item>
+                        <NavDropdown.Item className="navBarItem m-0" href='/datos'>Analisis</NavDropdown.Item>
                     </NavDropdown>
                 </div>   
                 <Link to="/about" className="navBarItem m-2 me-5">About</Link>

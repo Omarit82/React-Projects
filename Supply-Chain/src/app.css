@@ -10,7 +10,8 @@ main {
     padding: 20px;
     height: 180vh;
     overflow-y: scroll;
-    background-image: url('./assets/Images/fondo_metal.jpeg');
+    background-color: rgb(133, 133, 133);
+    /*background-image: url('./assets/Images/fondo_metal.jpeg');*/
     background-size: cover;     
     background-position: center;  
     background-repeat: no-repeat;

@@ -18,9 +18,8 @@ export const Header = () => {
             </div>
             <div className='col-2 avatar m-0 mt-2'> 
                 { usuario && 
-                <div className="d-flex flex-column align-items-center justify-content-around">
+                <div className="d-flex mt-3 flex-column align-items-center justify-content-around">
                     <div>
-                        <img src={usuario.avatar} alt="Avatar" className='avatar m-2' />
                         <p>{usuario.apellido}, {usuario.nombre}</p>
                     </div>
                     <button className="btn btn-info button-logout" onClick={logout}>Logout</button>

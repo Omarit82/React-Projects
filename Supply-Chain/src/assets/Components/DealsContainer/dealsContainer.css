@@ -1,5 +1,5 @@
 .ascDesc{
-    background-color: darkblue;
+    background-color: rgb(37, 40, 59);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,8 +9,8 @@
 
 #searchBar{
     height:35px;
-    border: 2px solid darkgray;
-    background-color: antiquewhite;
+    border: 2px solid rgb(95, 95, 95);
+    background-color: rgb(255, 255, 255);
     color: darkslategray;
 }
 .logoGoogle {
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: darkblue;/*#2C4770;*/
+    background-color: rgb(69, 75, 110);;/*#2C4770;*/
     color: #fff;
 }
 .btn-info:hover{

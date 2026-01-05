@@ -13,11 +13,9 @@ a {
     text-decoration: none;
 }
 .barra {
-    border-top: 2px solid gold;
-    border-bottom: 2px solid gold;
-    background-color: rgb(233, 218, 200);
+    background-color: rgb(255, 255, 255);
     position: sticky;
-    top: 18px;
+    top: 0px;
     z-index: 1;
 }
 

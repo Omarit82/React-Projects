@@ -1,7 +1,8 @@
 header{
-    background-color: #051A38;
+    /*background-color: #051A38;*/
+    background-color: rgb(37, 40, 59);
     color: #fff;
-    height: 35vh;
+    height: 25vh;
     position: sticky;
     top: -32vh;
     z-index: 1;
